@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { Route } from "react-router-dom";
 
-import Xheader from './components/common/Xheader.jsx';
+import Home from './components/pages/Home/Home.jsx';
 
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Xheader />
+      	<Home />
       </div>
     );
   }
