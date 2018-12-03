@@ -117,6 +117,15 @@
 	margin-left: .5rem
 }
 
+.page__header .right .icon-gift {
+	background: url(../imgs/smallImg/gift.png) center center no-repeat;
+	width: 1.8rem;
+	height: 1.8rem;
+	background-size: contain;
+	position: relative;
+}
+
+
 #film.page {
 	background: #f7f7f9;
 	padding-top: 0;
@@ -4387,7 +4396,7 @@ a {
 }
 
 @font-face {
-	font-family:iconfont;src:url(/m/static/fonts/iconfont.5dad573.eot);src:url(/m/static/fonts/iconfont.5dad573.eot#iefix) format("embedded-opentype"),url(/m/static/fonts/iconfont.85e328c.ttf) format("truetype"),url(/m/static/img/iconfont.59dcae0.svg#iconfont) format("svg")
+	font-family:iconfont;src:url(../libs/fonts/iconfont.5dad573.eot);src:url(../libs/fonts/iconfont.5dad573.eot#iefix) format("embedded-opentype"),url(../libs/fonts/iconfont.85e328c.ttf) format("truetype"),url(../libs/fonts/iconfont.59dcae0.svg#iconfont) format("svg")
 }
 
 .icon {

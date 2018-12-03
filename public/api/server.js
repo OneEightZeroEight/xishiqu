@@ -26,7 +26,7 @@ app.get("/init",(req,res)=>{
 
 //获取广州信息
 // http://m.xishiqu.com/ajax/home/index?cityCode=020
-app.get("/getIndexDate",(req,res)=>{
+app.get("/getIndexData",(req,res)=>{
 	res.append("Access-Control-Allow-Origin", "*");
 
 	// console.log(req.query.startNum);
@@ -41,12 +41,12 @@ app.get("/getIndexDate",(req,res)=>{
 
 
 
-var server = app.listen(6666,()=>{
+var server = app.listen(1111,()=>{
     var host = server.address().address
     var port = server.address().port
  
     // console.log("访问地址为 http://%s:%s", host, port);
-	console.log('server start in port '+6666);
+	console.log('server start in port '+1111);
 })
 
 
