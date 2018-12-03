@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import './styles/app.css'
 
 import App from './App';
+//请求
+import axios from 'axios';
+React.axios = axios;
 import * as serviceWorker from './libs/serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));
