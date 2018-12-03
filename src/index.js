@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/app.css'
-
+import './styles/home.css'
+import './styles/activity.css'
 import App from './App';
 // 路由
 import { HashRouter as Router} from "react-router-dom";
