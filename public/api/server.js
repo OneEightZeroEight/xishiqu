@@ -33,7 +33,7 @@ app.get("/getIndexDate",(req,res)=>{
 	// console.log(req.query.timestamp);
 
 
-	request(`http://m.xishiqu.com/ajax/home/index?cityCode=020`,(err,result,body)=>{
+	request(`http://m.xishiqu.com/ajax/home/index?cityCode=${req.query.cityCode}`,(err,result,body)=>{
 			res.send(body);
 		});
 })
