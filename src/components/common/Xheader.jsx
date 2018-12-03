@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class Xheader extends Component {
   render() {
     return (
+    	<div id="home">
       <div className="page__header">
 	   <div className="left"> 
 	    <div>
@@ -25,6 +26,7 @@ class Xheader extends Component {
 	     </div>
 	    </div>
 	   </div>
+	  </div>
 	  </div>
     )
   }
