@@ -6,8 +6,14 @@ class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <Lunbo></Lunbo>
-        <Huaju></Huaju>
+      	<div id='wrapper-home'>
+        	<div id='home' className='page'>
+
+	        	<Lunbo></Lunbo>
+	        	<Huaju></Huaju>
+        	</div>
+
+        </div>
       </div>
     );
   }
