@@ -41,12 +41,12 @@ app.get("/getIndexDate",(req,res)=>{
 
 
 
-var server = app.listen(1234,()=>{
+var server = app.listen(8080,()=>{
     var host = server.address().address
     var port = server.address().port
  
     // console.log("访问地址为 http://%s:%s", host, port);
-	console.log('server start in port '+1234);
+	console.log('server start in port '+8080);
 })
 
 
