@@ -26,14 +26,14 @@ app.get("/init",(req,res)=>{
 
 //获取广州信息
 // http://m.xishiqu.com/ajax/home/index?cityCode=020
-app.get("/getIndexDate",(req,res)=>{
+app.get("/getIndexData",(req,res)=>{
 	res.append("Access-Control-Allow-Origin", "*");
 
 	// console.log(req.query.startNum);
 	// console.log(req.query.timestamp);
 
 
-	request(`http://m.xishiqu.com/ajax/home/index?cityCode=${req.query.cityCode}`,(err,result,body)=>{
+	request(`http://m.xishiqu.com/ajax/home/index?`,(err,result,body)=>{
 			res.send(body);
 		});
 })
@@ -41,12 +41,19 @@ app.get("/getIndexDate",(req,res)=>{
 
 
 
+
 var server = app.listen(1234,()=>{
+
+
+
     var host = server.address().address
     var port = server.address().port
  
     // console.log("访问地址为 http://%s:%s", host, port);
+
 	console.log('server start in port '+1234);
+
+
 })
 
 

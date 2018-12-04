@@ -1,12 +1,54 @@
 import React, { Component } from 'react';
-import '../../../styles/app.css'
 class Huaju extends Component {
+	constructor(props) {
+		super(props);
+		this.props = props;
+		this.state = {
+			cards: [],
+			jibai:[],
+			cards2:[],
+			jibai2:[],
+			film:[],
+			Like:[]
+		}
+	}
+	componentDidMount() {
+		console.log(789)
+		React.axios.get('http://localhost:1234/getIndexData',{params:{
+			cityCode:'020'
+		}
+	})
+			.then((response) => {
+				console.log(response.data.result.activityLikeInfo);
+				let srt = response.data.result.activityCateInfo[1].mData
+				let obj = srt.shift();
+				// console.log(obj)
+				// console.log(srt)
+				let haha = response.data.result.activityCateInfo[2].mData
+				let obj2 = haha.shift();
+				// console.log(obj2)
+				// console.log(haha)
+				this.setState({
+						cards:obj,
+						cards2:obj2,
+						jibai:srt,
+						jibai2:haha,
+						film:response.data.result.activityCateInfo[3].mData,
+						Like:response.data.result.activityLikeInfo
+				})
+		
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	}
   render() {
     return (
-    	<div className="wrapper-home">
-    	<div id="home" className="page">
+    	
 			<div className="block-wrapper">
-			    <div className="block">
+					{/*话剧*/}
+
+				<div  className="block" >
 			        <h3 className="block__title">
 			            话剧歌剧
 			            <small>
@@ -15,63 +57,70 @@ class Huaju extends Component {
 			        </h3>
 			        <div className="main-node">
 			            <div className="node node--activity primary">
-			                <div className="bg" style={{"backgroundImage": `url("http://image.xishiqu.cn/upload/activity/118/061/20180619003/v/b/3E3B8F3F-31D3-1EAB-8A0E-D8DCF7C2D9D0.jpg")`}}>
+			                <div className="bg" style={{"backgroundImage": `url(${this.state.cards.actImgUrl})`}}>
 			                </div>
 			                <div className="mask">
 			                </div>
-			                <div className="thumbnail" style={{"backgroundImage": `url("http://image.xishiqu.cn/upload/activity/118/061/20180619003/v/b/3E3B8F3F-31D3-1EAB-8A0E-D8DCF7C2D9D0.jpg")`}}>
+			                <div className="thumbnail" style={{"backgroundImage": `url(${this.state.cards.actImgUrl})`}}>
 			                    <div className="thumbnail__hot">
 			                        <span>
-			                            89.8
+			                            {this.state.cards.hotLevel}
 			                        </span>
 			                        ℃
 			                    </div>
 			                </div>
 			                <div className="main">
 			                    <h1 className="title">
-			                        音乐剧《芝加哥》—广州站
+			                        {this.state.cards.actName}
 			                    </h1>
 			                    <div className="quote">
-			                        但有这么一部音乐剧，它舞美极简、风格暗黑，却被两次搬上电影荧幕、二度创排登上百老汇舞台
+			                        {this.state.cards.intro}
 			                    </div>
 			                    <div className="date">
-			                        12.06~12.11
+			                        {this.state.cards.actTime}
 			                    </div>
 			                    <div className="price">
 			                        <div>
 			                            <span>
-			                                ￥580.00
+			                                ￥{this.state.cards.lowPrice}
 			                            </span>
 			                            <span className="sub">
 			                                起
 			                            </span>
 			                        </div>
 			                        <div>
-			                            在售卖家2家
+			                            在售卖家{this.state.cards.sellerCount}家
 			                        </div>
 			                    </div>
 			                </div>
 			            </div>
 			        </div>
+			          
 			        <div className="node-list">
-			            <div className="wrapper" style={{width: '56rem'}}>
-			                <div className="node node--activity vertical">
-			                    <div className="thumbnail" style={{"backgroundImage": `url("http://image.xishiqu.cn/upload/activity/118/101/20181010007/v/b/FBB490FC-8233-A7DE-4E38-7F649E371142.jpg")`}}>
+
+			            <div  className="wrapper" style={{width: '135rem'}}>
+			            	{
+					(() => {
+						return this.state.jibai.map((item, index) => {
+							return (
+
+			                <div   key={index} className="node node--activity vertical">
+			                    <div  className="thumbnail" style={{"backgroundImage": `url(${item.actImgUrl})`,width: '10rem'}}>
 			                        <div className="thumbnail__hot">
 			                            <span>
-			                                90.0
+			                             	{item.hotLevel}
 			                            </span>
 			                            ℃
 			                        </div>
 			                    </div>
 			                    <div className="main">
 			                        <h1 className="title">
-			                            话剧《我是月亮》—广州站
+			                            {item.actName}
 			                        </h1>
 			                        <div className="price">
 			                            <div>
 			                                <span>
-			                                    ￥240.00
+			                                    ￥{item.lowPrice}
 			                                </span>
 			                                <span className="sub">
 			                                    起
@@ -79,140 +128,201 @@ class Huaju extends Component {
 			                            </div>
 			                        </div>
 			                        <div className="date">
-			                            12.20~12.22
+			                            {item.actTime}
 			                        </div>
 			                        <div className="venue">
 			                        </div>
 			                    </div>
 			                </div>
-			                <div className="node node--activity vertical">
-			                    <div className="thumbnail" style={{"backgroundImage": `url("http://image4.xishiqu.cn/upload/activity/118/053/20180531007/v/b/CC047C4E-732A-95EF-C2B5-272DDAA29103.jpg")`}}>
-			                        <div className="thumbnail__hot">
-			                            <span>
-			                                88.7
-			                            </span>
-			                            ℃
-			                        </div>
-			                    </div>
-			                    <div className="main">
-			                        <h1 className="title">
-			                            林奕华年度大戏《聊斋Why We Chat？》—深圳站
-			                        </h1>
-			                        <div className="price">
-			                            <div>
-			                                <span>
-			                                    ￥580.00
-			                                </span>
-			                                <span className="sub">
-			                                    起
-			                                </span>
-			                            </div>
-			                        </div>
-			                        <div className="date">
-			                            12.07~12.08
-			                        </div>
-			                        <div className="venue">
-			                        </div>
-			                    </div>
-			                </div>
-			                <div className="node node--activity vertical">
-			                    <div className="thumbnail" style={{"backgroundImage": `url("http://image3.xishiqu.cn/upload/activity/118/100/20181009002/v/b/23F49A00-7D92-62C5-331F-8B810D015573.jpg")`}}>
-			                        <div className="thumbnail__hot">
-			                            <span>
-			                                88.0
-			                            </span>
-			                            ℃
-			                        </div>
-			                    </div>
-			                    <div className="main">
-			                        <h1 className="title">
-			                            话剧《守岁》—深圳站
-			                        </h1>
-			                        <div className="price">
-			                            <div>
-			                                <span>
-			                                    ￥180.00
-			                                </span>
-			                                <span className="sub">
-			                                    起
-			                                </span>
-			                            </div>
-			                        </div>
-			                        <div className="date">
-			                            01.05 周六 20:00
-			                        </div>
-			                        <div className="venue">
-			                        </div>
-			                    </div>
-			                </div>
-			                <div className="node node--activity vertical">
-			                    <div className="thumbnail" style={{"backgroundImage": `url("http://image4.xishiqu.cn/upload/activity/118/091/20180910010/v/b/2AB4EA51-2F0E-6D7F-0B06-22F903BFFFA7.jpg")`}}>
-			                        <div className="thumbnail__hot">
-			                            <span>
-			                                88.4
-			                            </span>
-			                            ℃
-			                        </div>
-			                    </div>
-			                    <div className="main">
-			                        <h1 className="title">
-			                            香港意境音乐剧场《落花无言》—深圳站
-			                        </h1>
-			                        <div className="price">
-			                            <div>
-			                                <span>
-			                                    ￥180.00
-			                                </span>
-			                                <span className="sub">
-			                                    起
-			                                </span>
-			                            </div>
-			                        </div>
-			                        <div className="date">
-			                            12.12~12.13
-			                        </div>
-			                        <div className="venue">
-			                        </div>
-			                    </div>
-			                </div>
-			                <div className="node node--activity vertical">
-			                    <div className="thumbnail" style={{"backgroundImage": `url("http://image5.xishiqu.cn/upload/activity/118/072/20180727027/v/b/F2380031-F747-B503-7829-2150DF3C6B1F.jpg")`}}>
-			                        <div className="thumbnail__hot">
-			                            <span>
-			                                90.0
-			                            </span>
-			                            ℃
-			                        </div>
-			                    </div>
-			                    <div className="main">
-			                        <h1 className="title">
-			                            圣彼得堡古典芭蕾舞团芭蕾舞《天鹅湖》—深圳站
-			                        </h1>
-			                        <div className="price">
-			                            <div>
-			                                <span>
-			                                    ￥180.00
-			                                </span>
-			                                <span className="sub">
-			                                    起
-			                                </span>
-			                            </div>
-			                        </div>
-			                        <div className="date">
-			                            12.21~12.22
-			                        </div>
-			                        <div className="venue">
-			                        </div>
-			                    </div>
-			                </div>
-			            </div>
-			        </div>
+					                
+								)
+								})
+							})()
+						}
+			            </div>        
+			        </div>       
 			    </div>
-			</div>
-			</div>
-			</div>
-);
-  }
+
+		{/*休闲娱乐*/}
+	<div className="block">
+    <h3 className="block__title">
+        休闲娱乐
+        <small>
+            查看更多
+        </small>
+    </h3>
+    <div className="main-node">
+        <div className="node node--activity primary">
+            <div className="bg" style={{"backgroundImage": `url(${this.state.cards2.actImgUrl})`}}>
+            </div>
+            <div className="mask">
+            </div>
+            <div className="thumbnail" style={{"backgroundImage": `url(${this.state.cards2.actImgUrl})`}}>
+                
+                <div className="thumbnail__hot">
+                    <span>
+                        {this.state.cards2.hotLevel}
+                    </span>
+                    ℃
+                </div>
+            </div>
+            
+            
+            <div className="main">
+                <h1 className="title">
+                    {this.state.cards2.actName}
+                </h1>
+                <div className="quote">
+                    {this.state.cards2.intro}
+                </div>
+                <div className="date">
+                    {this.state.cards2.actTime}
+                </div>
+                <div className="price">
+                    <div>
+                        <span>
+                            ￥{this.state.cards2.lowPrice}
+                        </span>
+                        <span className="sub">
+                            起
+                        </span>
+                    </div>
+                    <div>
+                        在售卖家{this.state.cards2.sellerCount}家
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div className="node-list">
+
+			            <div  className="wrapper" style={{width: '110rem'}}>
+			            	{
+					(() => {
+						return this.state.jibai2.map((item, index) => {
+							return (
+			                <div   key={index} className="node node--activity vertical">
+			                    <div  className="thumbnail" style={{"backgroundImage": `url(${item.actImgUrl})`,width: '10rem'}}>
+			                        <div className="thumbnail__hot">
+			                            <span>
+			                             	{item.hotLevel}
+			                            </span>
+			                            ℃
+			                        </div>
+			                    </div>
+			                    <div className="main">
+			                        <h1 className="title">
+			                            {item.actName}
+			                        </h1>
+			                        <div className="price">
+			                            <div>
+			                                <span>
+			                                    ￥{item.lowPrice}
+			                                </span>
+			                                <span className="sub">
+			                                    起
+			                                </span>
+			                            </div>
+			                        </div>
+			                        <div className="date">
+			                            {item.actTime}
+			                        </div>
+			                        <div className="venue">
+			                        </div>
+			                    </div>
+			                </div>
+					                
+								)
+								})
+							})()
+						}
+			            </div>        
+			        </div>
+	</div>
+
+	{/*电影*/}
+<div className="block">
+    <h3 className="block__title">
+        电影
+        <small>
+            查看更多
+        </small>
+    </h3>
+    <div className="node-list">
+        <div className="wrapper" style={{width: '134rem'}}>
+        {
+			(() => {
+				return this.state.film.map((item, index) => {
+					return (						
+            <div className="node node--film vertical"  key={index}>
+                <div className="thumbnail" style={{"backgroundImage": `url(${item.filmImg})`,width: '10rem'}}>
+                    <div className="thumbnail__score">
+                        {item.scoreD}
+                    </div>
+                </div>
+                
+                <div className="main">
+                    <h1 className="title">
+                        {item.filmName}
+                    </h1>
+                </div>
+            </div> 
+           )
+					})
+				})()
+			}   
+        </div>
+    </div>
+</div>
+{/*猜你所喜*/}
+	<div className="block favours">
+	    <h3 className="block__title">
+	        投你所喜
+	    </h3>
+	    {
+			(() => {
+				return this.state.Like.map((item, index) => {
+					return (	
+	    <div className="node node--activity horizontal" key={index}>       
+	        <div  className="thumbnail" style={{"backgroundImage": `url(${item.actImgUrl})`}}></div>
+	        <div className="main">
+	            <h1 className="title">
+	                {item.actName}
+	            </h1>
+	            <div className="date">
+	                {item.actTime}
+	            </div>
+	            <div className="venue">
+	                {item.veName}
+	            </div>
+	            <div className="tags">      
+	            </div>
+	            <div className="price">
+	                <div>
+	                    <span>
+	                        ￥{item.lowPrice}
+	                    </span>
+	                    <span className="sub">
+	                        起
+	                    </span>
+	                </div>
+	                
+	            </div>
+	            <div className="quote">
+	                {item.intro}
+	            </div>
+	        </div>  
+	             
+	    </div>
+	    )
+			})
+		})()
+	}
+	</div>
+</div>
+
+		);
+  	}
 }
 
 export default Huaju;
