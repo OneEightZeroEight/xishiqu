@@ -1,29 +1,65 @@
 import React, { Component } from 'react';
 
+import Xfooter from '../../common/Xfooter.jsx';
+
 class CityList extends Component {
 	constructor(props){
 		super(props);
+		this.props = props;
 		this.state = {
-			cityData : []
+			cityData : [],
+			cityPy: [],
+			allCity: [],
+			cityList: []
 		}
 	}
 
+	navigateTo(e){
+		this.props.history.push({pathname: '/home'});
+	}
+
+	checkTo(code,e){
+		console.log(code);
+		this.setCookie('cityCode',code,1);
+		this.props.history.push({pathname: '/home'});
+	}
+
+	setCookie(cname, cvalue, exdays){
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires=" + d.toUTCString();
+        console.log(cname + "=" + cvalue + "; " + expires);
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+        console.log(document.cookie);
+    }
+
 
 	getCityList(){
+		var arr=[];
 		React.axios.get(`http://localhost:1234/getCityList`
 	      )
 	      .then((res)=>{
 	        	this.setState({
 	        		cityData : res.data.result
 	        	})
-	        	console.log(this.state.cityData);
+	        	// console.log(this.state.cityData);
+
 				for(var i in this.state.cityData){
-					console.log(i);
-					// console.log(i,this.state.cityData[i])
-					for(var j=0;j<this.state.cityData[i].length;j++){
-					    // console.log(i.toUpperCase(),this.state.cityData[i][j].areaName,this.state.cityData[i][j].areaCode)
-					}
+					var obj = {py:"",list:[]};
+
+					obj.py = i.toUpperCase();
+					obj.list = this.state.cityData[i];
+					// console.log(i,this.state.cityData[i]);
+					arr.push(obj);
+					// for(var j=0;j<this.state.cityData[i].length;j++){
+					//     console.log(i.toUpperCase(),this.state.cityData[i][j].areaName,this.state.cityData[i][j].areaCode)
+					// }
 				}
+				this.setState({
+					cityList: arr
+				})
+
+				// console.log(this.state.cityList);
 	        	
 	      })
 	      .catch((err)=>{
@@ -34,72 +70,58 @@ class CityList extends Component {
 
 	componentDidMount(){
 		this.getCityList();
-		
+
 	}
 
 	render() {
 		return (
 		    <div id="wrapper-city">
-				   <div id="city" className="page">
+				<div id="city" className="page">
 				    <header className="header">
-				     <i className="icon icon-angle-left"></i> 选择城市 
+				    	<i className="icon icon-angle-left" onClick={this.navigateTo.bind(this)}></i> 选择城市 
 				    </header> 
 				    <div className="location">
 				      当前定位城市：
-				     <span className="city--name">大连</span>
+				    	<span className="city--name">上海</span>
 				    </div>
 
 
 				    <ul className="list list-unstyled">
-				     <li className="group"><h3 className="group__title">a</h3> 
-				      <ul className="group__list">
-				       <li className="group__item">澳门</li>
-				      </ul></li>
-				     <li className="group"><h3 className="group__title">b</h3> 
-				      <ul className="group__list">
-				       <li className="group__item">北京</li>
-				      </ul></li>
+
+				    	{
+				    		 (() => {
+								 return this.state.cityList.map((item, index) => {
+
+				    		 		var cityName = item.list.map((pitem,idx)=>{
+		            					return (
+		            						
+											    
+											       <li  key={idx} className="group__item" onClick={this.checkTo.bind(this,pitem.areaCode)}>{pitem.areaName}</li>
+											   
+		            					)
+		            				})
+
+
+								 	return (
+								 			<li key={index} className="group">
+								 				<h3 className="group__title">{item.py}</h3>
+								 				<ul className="group__list">
+									 				{cityName}
+								 				 </ul>
+								 			</li>
+								 		)
+								 	})
+							 })()
+						}
 				     
-				     
-				     
-				     <li className="group"><h3 className="group__title">z</h3> 
-				      <ul className="group__list">
-				       <li className="group__item">珠海</li>
-				       <li className="group__item">中山市</li>
-				       <li className="group__item">郑州</li>
-				      </ul></li>
 				    </ul>
 
 
-				   </div> 
-				    
-				   <div className="bottom-toolbar">
-				    <div className="item">
-				     <span className="i home"></span> 
-				     <span className="text">首页</span>
-				    </div>
-				    <div className="item">
-				     <span className="i category"></span> 
-				     <span className="text">分类</span>
-				    </div>
-				    <div className="item">
-				     <span className="i article"></span> 
-				     <span className="text">同趣</span>
-				    </div>
-				    <div className="item">
-				     <span className="i ticket"></span> 
-				     <span className="text">转票</span>
-				    </div>
-				    <div className="item">
-				     <span className="i my"></span> 
-				     <span className="text">我</span>
-				    </div> 
-				    <div>
-				      
-				     
-				    </div>
-				   </div>
-				  </div>
+				</div> 
+
+				<Xfooter />
+				
+		</div>
 			);
 	}
 }

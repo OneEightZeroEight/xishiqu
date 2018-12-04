@@ -14,7 +14,7 @@ class Lunbo extends Component {
 	}
 
 	componentDidMount(){
-		this.getBannerData('020');
+		this.getBannerData('021');
 		
 	}
 

@@ -12,7 +12,7 @@ class Home extends Component {
 		return (
 			<div id="wrapper-home">
 				<div id="home" className="page">
-					<Xheader />
+					<Xheader history={this.props.history} />
 					<Lunbo />
 					<div className="block-wrapper">
 						<Xcotegory />
