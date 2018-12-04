@@ -1,13 +1,37 @@
 import React, { Component } from 'react';
 
 class Lunbo extends Component {
-  render() {
-    return (
-      <div className="Lunbo">
-        '这里是lunbo'
-      </div>
-    );
-  }
+	getBannerData(cityCode){
+		React.axios.get(`http://localhost:1234/getIndexData?cityCode=${cityCode}`
+	      )
+	      .then((res)=>{
+	        	console.log(res);
+	      })
+	      .catch((err)=>{
+	        
+	        console.log(err)
+	      })
+	}
+
+	componentDidMount(){
+		this.getBannerData('020');
+		
+	}
+
+	render() {
+		return (
+		    <div className="Lunbo">
+		    	<div id='wrapper-home'>
+		    		<div id='home' className='page'>
+		    			<div className='block-wrapper'>
+		    					asd
+		    			</div>
+			    	</div>
+			    </div>
+			  </div>
+			);
+	}
+
 }
 
 export default Lunbo;
