@@ -52,7 +52,11 @@
             left: 8px;
             color: #fff;
             padding: 4px 6px;
+
             // background: url(~static/activity/discount.png) no-repeat center top;
+
+            background-color:orange;
+
             background-size: 4rem 4rem;
             border-radius: 0 0 4px 4px;
             font-size: 1rem;
@@ -112,10 +116,17 @@
             margin-right: .5rem;
         }
         .flash {
+
             // background-image: url(~static/icons/flash@2x.png);
         }
         .seat {
             // background-image: url(~static/icons/seat@2x.png);
+
+            
+        }
+        .seat {
+            
+
         }
     }
 

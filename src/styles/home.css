@@ -1,4 +1,5 @@
 #home {
+
     background: #F4F4F4;
     padding-bottom: 5.5rem;
 }
@@ -364,6 +365,12 @@
 /*# sourceMappingURL=home.css.map */
 
 #home .page__header .icon-gift {
+
+  background: #F4F4F4;
+  padding-bottom: 5.5rem;
+}
+#home .page__header .icon-gift {
+
   /*background: url(~static/icons/gift@2x.png) center center no-repeat;*/
   width: 1.8rem;
   height: 1.8rem;
@@ -425,7 +432,11 @@
 #home .block-wrapper {
   padding: 1rem 1.2rem;
   background: #fff;
+
   margin-bottom: 1.2rem;
+
+  /*margin-bottom: 1.2rem;*/
+
 }
 #home .block-wrapper .block {
   border-bottom: 1px solid #efefef;
@@ -718,5 +729,8 @@
 #home .modal--category .list .item.active {
   color: #ff5400;
   border-color: #ff5400;
+
 }
+
+
 

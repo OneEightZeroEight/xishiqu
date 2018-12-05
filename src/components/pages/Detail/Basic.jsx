@@ -340,41 +340,41 @@ class Basic extends Component {
                             </div>
                             <div className="swiper-wrapper">
                                 <div className="swiper-slide">
-                                    <img src="http://image.xishiqu.cn/upload/activity/000/000/934//b/CDD57B6D-F7A7-FEBD-3B64-EF79D21B55AE.jpg"/>
+                                    <img src="http://image.xishiqu.cn/upload/activity/000/000/934//b/CDD57B6D-F7A7-FEBD-3B64-EF79D21B55AE.jpg" alt="adasdsd"/>
                                 </div>
                                 <div className="swiper-slide">
-                                    <img src="http://image6.xishiqu.cn/upload/activity/000/000/934//b/454A3556-1832-678F-D570-8F7656160E99.jpg"/>
+                                    <img src="http://image6.xishiqu.cn/upload/activity/000/000/934//b/454A3556-1832-678F-D570-8F7656160E99.jpg" alt="adasdsd"/>
                                 </div>
                                 <div className="swiper-slide">
-                                    <img src="http://image3.xishiqu.cn/upload/activity/000/000/934//b/9E37F852-A73B-E371-E2E8-446FC70520F0.jpg"/>
+                                    <img src="http://image3.xishiqu.cn/upload/activity/000/000/934//b/9E37F852-A73B-E371-E2E8-446FC70520F0.jpg" alt="adasdsd"/>
                                 </div>
                                 <div className="swiper-slide">
-                                    <img src="http://image5.xishiqu.cn/upload/activity/000/000/934//b/865DD4AE-1428-FBE9-1886-4CAA1C4696A2.jpg"/>
+                                    <img src="http://image5.xishiqu.cn/upload/activity/000/000/934//b/865DD4AE-1428-FBE9-1886-4CAA1C4696A2.jpg" alt="adasdsd"/>
                                 </div>
                             </div>
                         </div>
                         <div className="full-screen swiper-container" style={{"display":"none"}}>
                             <div className="swiper-wrapper">
                                 <div className="swiper-slide">
-                                    <img className="swiper-lazy" data-src="http://image.xishiqu.cn/upload/activity/000/000/934//o/CDD57B6D-F7A7-FEBD-3B64-EF79D21B55AE.jpg"/>
+                                    <img className="swiper-lazy" data-src="http://image.xishiqu.cn/upload/activity/000/000/934//o/CDD57B6D-F7A7-FEBD-3B64-EF79D21B55AE.jpg" alt="adasdsd"/>
                                         <div className="swiper-lazy-preloader swiper-lazy-preloader-white">
                                         </div>
                                     
                                 </div>
                                 <div className="swiper-slide">
-                                    <img className="swiper-lazy" data-src="http://image6.xishiqu.cn/upload/activity/000/000/934//o/454A3556-1832-678F-D570-8F7656160E99.jpg"/>
+                                    <img className="swiper-lazy" data-src="http://image6.xishiqu.cn/upload/activity/000/000/934//o/454A3556-1832-678F-D570-8F7656160E99.jpg" alt="adasdsd"/>
                                         <div className="swiper-lazy-preloader swiper-lazy-preloader-white">
                                         </div>
                                     
                                 </div>
                                 <div className="swiper-slide">
-                                    <img className="swiper-lazy" data-src="http://image3.xishiqu.cn/upload/activity/000/000/934//o/9E37F852-A73B-E371-E2E8-446FC70520F0.jpg"/>
+                                    <img className="swiper-lazy" data-src="http://image3.xishiqu.cn/upload/activity/000/000/934//o/9E37F852-A73B-E371-E2E8-446FC70520F0.jpg" alt="adasdsd"/>
                                         <div className="swiper-lazy-preloader swiper-lazy-preloader-white">
                                         </div>
                                     
                                 </div>
                                 <div className="swiper-slide">
-                                    <img className="swiper-lazy" data-src="http://image5.xishiqu.cn/upload/activity/000/000/934//o/865DD4AE-1428-FBE9-1886-4CAA1C4696A2.jpg"/>
+                                    <img className="swiper-lazy" data-src="http://image5.xishiqu.cn/upload/activity/000/000/934//o/865DD4AE-1428-FBE9-1886-4CAA1C4696A2.jpg" alt="adasdsd"/>
                                         <div className="swiper-lazy-preloader swiper-lazy-preloader-white">
                                         </div>
                                     
