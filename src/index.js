@@ -2,6 +2,12 @@ import * as serviceWorker from './libs/serviceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter as Router } from 'react-router-dom';
+
+// 状态管理 配置store的
+import { createStore } from 'redux'
+// 把上面配置好的store和react进行关联
+import { Provider } from 'react-redux';
+
 import App from './App.js';
 
 import './styles/app.css';
@@ -11,8 +17,72 @@ import './styles/city.css';
 import axios from 'axios';
 React.axios = axios;
 
+// 它是状态管理的配置参数，函数第一个参数为state，就是存储组件需要通信和交换的数据
+// 第二个参数是action，它是触发，他需要其他组件传递一个信号，
 
-ReactDOM.render(<Router><App /></Router>, document.getElementById('root'));
+
+
+//获取cookie
+function getCookie(cname){
+	var name = cname + "=";
+		var ca = document.cookie.split(';');
+		// console.log("获取cookie,现在循环");
+		for (var i = 0; i < ca.length; i++){
+			var c = ca[i];
+			// console.log(c);
+			while (c.charAt(0) === ' ') c = c.substring(1);
+			if (c.indexOf(name) !== -1){
+				// console.log(c.substring(name.length, c.length));
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+}
+
+var golbalCode = getCookie('cityCode');
+if(golbalCode === ''){
+	golbalCode = '021';
+}
+// console.log(golbalCode);
+
+
+// state交换数据的仓库
+// action交换数据的动作
+const store = createStore((state = {
+    cityCode:golbalCode,
+    isShowNav: false,
+    isShowGallery: {
+        bool: false,
+        src: ""
+    },
+
+}, action) => {
+    switch (action.type) {
+        case 'setCityCode':
+            return {
+                ...state,
+                cityCode:action.cityCode
+            }
+        case 'toggleGallery':
+            return {
+                ...state,
+                isShowGallery:action.isShowGallery
+            }
+        default:
+            return state
+    }
+})
+
+
+ReactDOM.render(
+    <Provider store={store}>
+        <Router>
+            <App />
+        </Router>
+    </Provider>
+, document.getElementById('root'));
+
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

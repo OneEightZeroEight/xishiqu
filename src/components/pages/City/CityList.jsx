@@ -10,7 +10,8 @@ class CityList extends Component {
 			cityData : [],
 			cityPy: [],
 			allCity: [],
-			cityList: []
+			cityList: [],
+			cityName: '上海'
 		}
 	}
 
@@ -19,8 +20,8 @@ class CityList extends Component {
 	}
 
 	checkTo(code,e){
-		console.log(code);
 		this.setCookie('cityCode',code,1);
+		this.setCookie('cityName',e.target.innerText,1);
 		this.props.history.push({pathname: '/home'});
 	}
 
@@ -30,8 +31,25 @@ class CityList extends Component {
         var expires = "expires=" + d.toUTCString();
         console.log(cname + "=" + cvalue + "; " + expires);
         document.cookie = cname + "=" + cvalue + "; " + expires;
-        console.log(document.cookie);
+//         console.log(document.cookie);
     }
+
+	//获取cookie
+	getCookie(cname){
+		var name = cname + "=";
+		var ca = document.cookie.split(';');
+		// console.log("获取cookie,现在循环");
+		for (var i = 0; i < ca.length; i++){
+			var c = ca[i];
+			// console.log(c);
+			while (c.charAt(0) === ' ') c = c.substring(1);
+			if (c.indexOf(name) !== -1){
+				// console.log(c.substring(name.length, c.length));
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
 
 
 	getCityList(){
@@ -70,7 +88,13 @@ class CityList extends Component {
 
 	componentDidMount(){
 		this.getCityList();
-
+		var name = this.getCookie('cityName');
+		if(name === ''){
+			name = '上海';
+		}
+		this.setState({
+			cityName: name
+		})
 	}
 
 	render() {
@@ -82,7 +106,7 @@ class CityList extends Component {
 				    </header> 
 				    <div className="location">
 				      当前定位城市：
-				    	<span className="city--name">上海</span>
+				    	<span className="city--name">{this.state.cityName}</span>
 				    </div>
 
 

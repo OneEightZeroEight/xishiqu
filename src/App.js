@@ -5,6 +5,8 @@ import Home from './components/pages/Home/Home.jsx';
 
 import CityList from './components/pages/City/CityList.jsx';
 
+import Search from './components/pages/Search/Search.jsx';
+
 
 class App extends Component {
   render() {
@@ -12,6 +14,7 @@ class App extends Component {
       <div className="App">
       	<Route path="/home" component={Home} />
       	<Route path="/city" component={CityList} />
+      	<Route path="/search" component={Search} />
       </div>
     );
   }

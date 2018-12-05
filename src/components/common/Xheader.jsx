@@ -15,6 +15,10 @@ class Xheader extends Component {
 		this.props.history.push({pathname: '/city'});
 	}
 
+	linkToSearch(e){
+		this.props.history.push({pathname: '/search'});
+	}
+
 	//获取cookie
 	getCookie(cname){
 		var name = cname + "=";
@@ -35,7 +39,13 @@ class Xheader extends Component {
 	componentDidMount(){
 		var code = this.getCookie('cityCode');
 		console.log(code);
-		this.getCityName(code);
+		if(code === ''){
+			this.setState({
+				cityName: '上海'
+			})
+		}else{
+			this.getCityName(code);
+		}
 
 	}
 
@@ -70,7 +80,7 @@ class Xheader extends Component {
 		    </div> 
 		   </div> 
 		   <div className="middle">
-		    <div className="search">
+		    <div className="search" onClick={this.linkToSearch.bind(this)}>
 		     <i className="icon icon-search"></i> 
 		     <input type="text" placeholder="搜索明星、演出、场馆" />
 		    </div>
