@@ -8,16 +8,18 @@ class Lunbo extends Component {
 			bannerdata:[]
 		}
 	}
-	getbannerdata(){
+	getBannerData(){
 		React.axios.get('http://localhost:1234/getIndexDate',{
 			params:{
 				cityCode:'020'
 			}
 		})
-		.then(function (res) {
+		.then( (res)=> {
 	    	console.log(res);
 	    	this.setState({
-	    		bannerdata:res.data
+	    		bannerdata:res.data.result.bannerInfo
+	    	},()=>{
+	    		this.lunbo();
 	    	})
 	    	console.log(this.state.bannerdata);
 	  })
@@ -45,19 +47,24 @@ class Lunbo extends Component {
 	    });
 	}
 	componentDidMount(){
-		 this.getbannerdata();
-		 this.lunbo();
+		 this.getBannerData();
 	}
   render() {
     return (
       <div className="Lunbo">
         <div className='block-wrapper'>
-    		<div className="swiper-container">
+    		<div className="swiper-container banners">
 		    <div className="swiper-wrapper">
-		      <div className="swiper-slide">Slide 1</div>
-		      <div className="swiper-slide">Slide 2</div>
-		      <div className="swiper-slide">Slide 3</div>
-		      <div className="swiper-slide">Slide 4</div>
+		      {
+		      	(()=>{
+		      		let bannerHTML=this.state.bannerdata.map((item,idx)=>{
+						return <div key={idx} className="swiper-slide">
+							<img src={item.imgUrl} />
+						</div>
+					})
+					return bannerHTML
+		      	})()
+		      }
 		    </div>
 		    <div className="swiper-pagination"></div>
 
