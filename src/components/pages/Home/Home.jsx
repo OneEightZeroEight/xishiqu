@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import Huaju from './Huaju.jsx'
 import Lunbo from './Lunbo.jsx'
 import Xheader from '../../common/Xheader.jsx';
@@ -27,7 +26,6 @@ class Home extends Component {
 			</div>
 		);
 	}
-
 }
 
 export default Home;

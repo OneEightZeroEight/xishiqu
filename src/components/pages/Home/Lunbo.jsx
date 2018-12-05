@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 class Lunbo extends Component {
+
 	getBannerData(cityCode){
 		React.axios.get(`http://localhost:1234/getIndexData?cityCode=${cityCode}`
 	      )
@@ -31,6 +32,36 @@ class Lunbo extends Component {
 			  </div>
 			);
 	}
+
+
+	getbannerdata(){
+		React.axios.get('http://localhost:1234/getIndexData',{params:{
+			cityCode:'020'
+		}
+		})
+		.then(function (res) {
+	    	console.log(res);
+	  })
+	  	.catch(function (error) {
+	    	console.log(error);
+	  });
+	}
+	componentDidMount(){
+		 this.getbannerdata();
+	}
+  render() {
+    return (
+      <div className="Lunbo">
+        <div id='wrapper-home'>
+        	<div id='home' className='page'>
+        		<div className='block-wrapper'>
+    
+        		</div>
+        	</div>
+        </div>
+      </div>
+    );
+  }
 
 }
 

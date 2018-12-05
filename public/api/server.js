@@ -6,7 +6,6 @@
 var express = require('express');
 var request = require('request');
 
-
 //导入proxy
 // var proxy = require('http-proxy-middleware');
 
@@ -110,6 +109,7 @@ app.get("/getIndexData", (req, res) => {
 
 })
 
+
 // app.get("/getIndexData020",(req,res)=>{
 
 // 	res.append("Access-Control-Allow-Origin", "*");
@@ -148,12 +148,13 @@ app.get("/getIndexData", (req, res) => {
 // 		});
 // })
 
-
-
-
-var server = app.listen(1234, () => {
-	var host = server.address().address
-	var port = server.address().port
-
-	console.log('server start in port ' + 1234);
+var server = app.listen(1234,()=>{
+    var host = server.address().address
+    var port = server.address().port
+ 
+    // console.log("访问地址为 http://%s:%s", host, port);
+	console.log('server start in port '+1234);
 })
+
+
+
