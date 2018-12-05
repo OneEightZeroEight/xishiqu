@@ -11,7 +11,7 @@ class App extends Component {
       
         <Route path="/home/" component={Home} />
        <Route path="/city" component={CityList} />
-    	 <Route path="/detail" component={Detail} />
+    	 <Route path="/detail/:name" component={Detail} />
     	 <Redirect exact from='/home/' to='/home/one/' />
         </Switch>
 

@@ -59,7 +59,7 @@ class Huaju extends Component {
 			                查看更多
 			            </small>
 			        </h3>
-			        <Link className="main-node" to={{pathname:'/detail/',state:{ name: this.state.cards.pinyinName }}} >
+			        <Link className="main-node" to={ '/detail/' + this.state.cards.pinyinName }>
 			            <div className="node node--activity primary">
 			                <div  className="bg" style={{"backgroundImage": `url(${this.state.cards.actImgUrl})`}}>
 			                </div>
@@ -112,7 +112,7 @@ class Huaju extends Component {
 							return (
 
 			                <Link   key={index} className="node node--activity vertical"
-			                to={{pathname:'/detail/',state:{ name: item.pinyinName }}}>
+			                to={ '/detail/' + item.pinyinName }>
 			                    <div  className="thumbnail" 
 			                    style={{"backgroundImage": `url(${item.actImgUrl})`,width: '10rem'}} >
 			                        <div className="thumbnail__hot">
@@ -160,7 +160,7 @@ class Huaju extends Component {
             查看更多
         </small>
     </h3>
-    <Link className="main-node" to={{pathname:'/detail/',state:{ name: this.state.cards2.pinyinName}}} >
+    <Link className="main-node" to={ '/detail/' + this.state.cards2.pinyinName } >
         <div className="node node--activity primary">
             <div className="bg" style={{"backgroundImage": `url(${this.state.cards2.actImgUrl})`}}>
             </div>
@@ -213,7 +213,7 @@ class Huaju extends Component {
 						return this.state.jibai2.map((item, index) => {
 							return (
 			                <Link   key={index} className="node node--activity vertical"
-			                to={{pathname:'/detail/',state:{ name: item.pinyinName }}}>
+			                to={ '/detail/' + item.pinyinName }>
 			                    <div                
 			                    className="thumbnail" 
 			                    style={{"backgroundImage": `url(${item.actImgUrl})`,width: '10rem'}}>
@@ -269,7 +269,7 @@ class Huaju extends Component {
 				return this.state.film.map((item, index) => {
 					return (						
             <Link className="node node--film vertical"  key={index}
-            to={{pathname:'/detail/',state:{ name: item.pinyinName}}}>
+            to={ '/detail/' + item.pinyinName }>
                 <div 
                 className="thumbnail" 
                 style={{"backgroundImage": `url(${item.filmImg})`,width: '10rem'}}>
@@ -301,7 +301,7 @@ class Huaju extends Component {
 				return this.state.Like.map((item, index) => {
 					return (	
 	    <Link className="node node--activity horizontal" key={index}
-	    to={{pathname:'/detail/',state:{ name: item.pinyinName}}}>       
+	    to={ '/detail/' + item.pinyinName }>   
 	        <div
 	        className="thumbnail" 
 	        style={{"backgroundImage": `url(${item.actImgUrl})`}}>

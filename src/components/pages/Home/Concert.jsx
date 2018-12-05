@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 class Concert extends Component {
   constructor(props){
     super(props);
@@ -41,7 +42,7 @@ class Concert extends Component {
                 查看更多
             </small>
         </h3>
-        <div className="main-node">
+        <Link className="main-node" to={ '/detail/' + this.state.firstData.pinyinName }>
             <div className="node node--activity primary">
                 <div className="bg" style={{backgroundImage: 'url("http://image3.xishiqu.cn/upload/activity/118/111/20181119002/v/b/9E466839-6A8D-FAFB-EEA1-D90077E96646.jpg")'}}>
                 </div>
@@ -80,15 +81,15 @@ class Concert extends Component {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
         <div className="node-list">
-            <div className="wrapper" style={{width: '78.4rem'}}>
+            <div className="wrapper" style={{width: '100.4rem'}}>
                 {
                 	(()=>{
                 		return this.state.listData.map((item,idx)=>{
                 			return (
-                					<div key={idx} className="node node--activity vertical">
-                    <div className="thumbnail" style={{backgroundImage: `url(${item.actImgUrl})`}}>
+                					<Link key={idx} className="node node--activity vertical" to={ '/detail/' +item.pinyinName }>
+                    <div className="thumbnail" style={{backgroundImage: `url(${item.actImgUrl})`,width: '10rem'}}>
                     {
                     	(()=>{
                     		if(item.maxDiscount){
@@ -131,7 +132,7 @@ class Concert extends Component {
                         <div className="venue">
                         </div>
                     </div>
-                </div>
+                </Link>
                 				)
                 		})
                 	})()

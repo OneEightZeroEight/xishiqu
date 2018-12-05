@@ -5,14 +5,13 @@ class Detail extends Component {
 		super(props);
 		this.props = props;
         console.log(props)
+        console.log(this.props.match.params.name)
 	}
     render() {
         return (
             <div id="wrapper-activity">
                 <div className="page-group">
-
-                        <p>{this.props.location.state.name}</p>
-                        <Basic history={this.props.location.state.name}></Basic>
+                        <Basic history={this.props.match.params.name}></Basic>
                     
                 </div>
             </div>
