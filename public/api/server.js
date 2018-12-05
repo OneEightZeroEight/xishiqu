@@ -69,7 +69,16 @@ app.get("/getCity", (req, res) => {
 	});
 })
 
+// 详情页
+// http://m.xishiqu.com/ajax/activity/detail?pinyinName=wosylgz
+app.get("/goDetail", (req, res) => {
 
+	res.append("Access-Control-Allow-Origin", "*");
+
+	request(`http://m.xishiqu.com/ajax/activity/detail?pinyinName=${req.query.pinyinName}`, (err, result, body) => {
+		res.send(body);
+	});
+})
 
 //获取广州信息
 // http://m.xishiqu.com/ajax/home/index?cityCode=020
@@ -108,19 +117,6 @@ app.get("/getIndexData", (req, res) => {
 
 
 
-var server = app.listen(1234,()=>{
-
-
-
-    var host = server.address().address
-    var port = server.address().port
- 
-    // console.log("访问地址为 http://%s:%s", host, port);
-
-	console.log('server start in port '+1234);
-
-
-})
 
 // 	request(`http://m.xishiqu.com/ajax/home/index?cityCode=020`,(err,result,body)=>{
 // 			res.send(body);
@@ -152,7 +148,7 @@ var server = app.listen(1234,()=>{
 // 		});
 // })
 
->>>>>>> d490ed71d58179ca717ec819c3a25ed8235b9446
+
 
 
 var server = app.listen(1234, () => {

@@ -5,7 +5,8 @@ import ReactDOM from 'react-dom';
 
 import './styles/app.css'
 import './styles/home.css'
-import './styles/activity.css'
+import './styles/activity.scss'
+import './styles/act.scss'
 import './styles/film.css'
 import './styles/city.css';
 import App from './App';

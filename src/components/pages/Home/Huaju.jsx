@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 class Huaju extends Component {
 	constructor(props) {
 		super(props);
@@ -19,10 +20,10 @@ class Huaju extends Component {
 		}
 	})
 			.then((response) => {
-				console.log(response.data.result.activityLikeInfo);
+				console.log(response.data.result);
 				let srt = response.data.result.activityCateInfo[1].mData
 				let obj = srt.shift();
-				// console.log(obj)
+				console.log(obj)
 				// console.log(srt)
 				let haha = response.data.result.activityCateInfo[2].mData
 				let obj2 = haha.shift();
@@ -42,6 +43,9 @@ class Huaju extends Component {
 				console.log(error);
 			});
 	}
+	goDetail(e){
+		console.log(e.target)
+	}
   render() {
     return (
     	
@@ -55,13 +59,16 @@ class Huaju extends Component {
 			                查看更多
 			            </small>
 			        </h3>
-			        <div className="main-node">
+			        <Link className="main-node" to={{pathname:'/detail/',state:{ name: this.state.cards.pinyinName }}} >
 			            <div className="node node--activity primary">
-			                <div className="bg" style={{"backgroundImage": `url(${this.state.cards.actImgUrl})`}}>
+			                <div  className="bg" style={{"backgroundImage": `url(${this.state.cards.actImgUrl})`}}>
 			                </div>
 			                <div className="mask">
 			                </div>
-			                <div className="thumbnail" style={{"backgroundImage": `url(${this.state.cards.actImgUrl})`}}>
+			                <div  
+			                className="thumbnail"  
+			                onClick={this.goDetail.bind(this)} 
+			                style={{"backgroundImage": `url(${this.state.cards.actImgUrl})`}}>
 			                    <div className="thumbnail__hot">
 			                        <span>
 			                            {this.state.cards.hotLevel}
@@ -94,18 +101,20 @@ class Huaju extends Component {
 			                    </div>
 			                </div>
 			            </div>
-			        </div>
+			        </Link>
 			          
 			        <div className="node-list">
 
-			            <div  className="wrapper" style={{width: '135rem'}}>
+			            <div  className="wrapper" >
 			            	{
 					(() => {
 						return this.state.jibai.map((item, index) => {
 							return (
 
-			                <div   key={index} className="node node--activity vertical">
-			                    <div  className="thumbnail" style={{"backgroundImage": `url(${item.actImgUrl})`,width: '10rem'}}>
+			                <Link   key={index} className="node node--activity vertical"
+			                to={{pathname:'/detail/',state:{ name: item.pinyinName }}}>
+			                    <div  className="thumbnail" 
+			                    style={{"backgroundImage": `url(${item.actImgUrl})`,width: '10rem'}} >
 			                        <div className="thumbnail__hot">
 			                            <span>
 			                             	{item.hotLevel}
@@ -133,7 +142,7 @@ class Huaju extends Component {
 			                        <div className="venue">
 			                        </div>
 			                    </div>
-			                </div>
+			                </Link>
 					                
 								)
 								})
@@ -151,13 +160,15 @@ class Huaju extends Component {
             查看更多
         </small>
     </h3>
-    <div className="main-node">
+    <Link className="main-node" to={{pathname:'/detail/',state:{ name: this.state.cards2.pinyinName}}} >
         <div className="node node--activity primary">
             <div className="bg" style={{"backgroundImage": `url(${this.state.cards2.actImgUrl})`}}>
             </div>
             <div className="mask">
             </div>
-            <div className="thumbnail" style={{"backgroundImage": `url(${this.state.cards2.actImgUrl})`}}>
+            <div 
+            className="thumbnail" 
+            style={{"backgroundImage": `url(${this.state.cards2.actImgUrl})`}}>
                 
                 <div className="thumbnail__hot">
                     <span>
@@ -193,7 +204,7 @@ class Huaju extends Component {
                 </div>
             </div>
         </div>
-    </div>
+    </Link>
     <div className="node-list">
 
 			            <div  className="wrapper" style={{width: '110rem'}}>
@@ -201,8 +212,11 @@ class Huaju extends Component {
 					(() => {
 						return this.state.jibai2.map((item, index) => {
 							return (
-			                <div   key={index} className="node node--activity vertical">
-			                    <div  className="thumbnail" style={{"backgroundImage": `url(${item.actImgUrl})`,width: '10rem'}}>
+			                <Link   key={index} className="node node--activity vertical"
+			                to={{pathname:'/detail/',state:{ name: item.pinyinName }}}>
+			                    <div                
+			                    className="thumbnail" 
+			                    style={{"backgroundImage": `url(${item.actImgUrl})`,width: '10rem'}}>
 			                        <div className="thumbnail__hot">
 			                            <span>
 			                             	{item.hotLevel}
@@ -230,7 +244,7 @@ class Huaju extends Component {
 			                        <div className="venue">
 			                        </div>
 			                    </div>
-			                </div>
+			                </Link>
 					                
 								)
 								})
@@ -254,8 +268,11 @@ class Huaju extends Component {
 			(() => {
 				return this.state.film.map((item, index) => {
 					return (						
-            <div className="node node--film vertical"  key={index}>
-                <div className="thumbnail" style={{"backgroundImage": `url(${item.filmImg})`,width: '10rem'}}>
+            <Link className="node node--film vertical"  key={index}
+            to={{pathname:'/detail/',state:{ name: item.pinyinName}}}>
+                <div 
+                className="thumbnail" 
+                style={{"backgroundImage": `url(${item.filmImg})`,width: '10rem'}}>
                     <div className="thumbnail__score">
                         {item.scoreD}
                     </div>
@@ -266,7 +283,7 @@ class Huaju extends Component {
                         {item.filmName}
                     </h1>
                 </div>
-            </div> 
+            </Link> 
            )
 					})
 				})()
@@ -283,8 +300,12 @@ class Huaju extends Component {
 			(() => {
 				return this.state.Like.map((item, index) => {
 					return (	
-	    <div className="node node--activity horizontal" key={index}>       
-	        <div  className="thumbnail" style={{"backgroundImage": `url(${item.actImgUrl})`}}></div>
+	    <Link className="node node--activity horizontal" key={index}
+	    to={{pathname:'/detail/',state:{ name: item.pinyinName}}}>       
+	        <div
+	        className="thumbnail" 
+	        style={{"backgroundImage": `url(${item.actImgUrl})`}}>
+	        </div>
 	        <div className="main">
 	            <h1 className="title">
 	                {item.actName}
@@ -313,7 +334,7 @@ class Huaju extends Component {
 	            </div>
 	        </div>  
 	             
-	    </div>
+	    </Link>
 	    )
 			})
 		})()

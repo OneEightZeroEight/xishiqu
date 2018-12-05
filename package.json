@@ -3,15 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "animate": "^1.0.0",
+    "animate.css": "^3.7.0",
     "axios": "^0.18.0",
     "node-sass": "^4.10.0",
     "react": "^16.6.3",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.6.3",
     "react-lazyimg-component": "^0.0.2",
     "react-redux": "^5.1.1",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "sass-loader": "^7.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
