@@ -6,7 +6,8 @@ class NodeList extends Component{
 		this.props = props;
 		this.state = {
 			listData: [],
-			hasMore: false
+			hasMore: false,
+			listType: '' 
 		}
 	}
 
@@ -35,7 +36,12 @@ class NodeList extends Component{
 	}
 
 	componentDidMount(){
-		this.getCategoryList('','','-1','1','020');
+		this.getCategoryList(this.props.frontCate,'','-1','1','020');
+	}
+
+	componentWillReceiveProps(nextProps){
+		this.setState({listType: nextProps.frontCate});
+		this.getCategoryList(nextProps.frontCate,'','-1','1','020');
 	}
 
 	render(){
@@ -43,29 +49,82 @@ class NodeList extends Component{
 			<div className="node-list">
     			{
     				(()=>{
-    					return this.state.listData.map((item,index)=>{
+    					if(this.state.listData.length === 0){
     						return (
-    							<div key={index} className="node node--activity horizontal">
-				        			<div className="thumbnail" 
-				        				style={{backgroundImage: `url(${item.actImgUrl})`}}>
-						            </div>
-						        	<div className="main">
-						            	<h1 className="title">{item.actName}</h1>
-						            	<div className="date">{item.actTime}</div>
-						            	<div className="venue">{item.veName}</div>
-						            	<div className="tags"></div>
-						            	<div className="price">
-						                	<div>
-						                    <span>￥{item.lowPrice}</span>
-						                    <span className="sub">起</span>
-						                    </div>
-						                </div>
-						            	<div className="quote">{item.intro}</div>
-						            </div>
-						        
-						        </div>
+    							<div className="empty">暂无演出</div>
     						)
-    					})
+    					}else{
+    						if(this.state.listType !== 'film'){
+			    				return	this.state.listData.map((item,index)=>{
+			    						return (
+			    							<div key={index} className="node node--activity horizontal">
+							        			<div className="thumbnail" 
+							        				style={{backgroundImage: `url(${item.actImgUrl})`}}>
+									            </div>
+									        	<div className="main">
+									            	<h1 className="title">{item.actName}</h1>
+									            	<div className="date">{item.actTime}</div>
+									            	<div className="venue">{item.veName}</div>
+									            	<div className="tags"></div>
+									            	<div className="price">
+									                	<div>
+									                    <span>￥{item.lowPrice}</span>
+									                    <span className="sub">起</span>
+									                    </div>
+									                </div>
+									            	<div className="quote">{item.intro}</div>
+									            </div>
+									        
+									        </div>
+			    						)
+			    					})
+    							
+    						}else{
+    							return this.state.listData.map((item,index)=>{
+    								var filmTime,filmBtn = '';
+    								if(item.openingDate !== ''){
+    									filmTime = (
+    											<div className="i time">{item.openingDate}</div>
+    										);
+    									filmBtn = (
+    											<span className="btn btn-seat btn-presale">预售</span>
+    										)
+    								}else{
+    									filmBtn = (
+    											<span className="btn btn-seat">比价</span>
+    										)
+    								}
+
+
+
+    								return (
+    									<div key={index} className="node node--film horizontal">
+										    <div className="thumbnail" 
+										    	 style={{backgroundImage: `url(${item.filmImg})`}}>
+									        </div>
+										    <div className="main">
+										        <div>
+										            <h1 className="i title">{item.filmName}</h1>
+										            <div className="i scores">
+										                <span className="score score-db">
+										                    <label className="score__source">豆瓣</label>{item.scoreD}
+										                </span>
+										                <span className="score score-gwl">
+										                    <label className="score__source">淘票票</label>{item.scoreG}
+										                </span>
+										            </div>
+										            {filmTime}
+										            <div className="i quote"></div>
+										            <div className="i actors">{item.filmActor}</div>
+									            </div>
+										        {filmBtn}
+										    </div>
+									    </div>
+    								)
+    							})
+    						}
+    					}
+    						
     				})()
     			}
 

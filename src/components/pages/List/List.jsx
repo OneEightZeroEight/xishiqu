@@ -10,18 +10,31 @@ class List extends Component {
     super(props);
     this.props=props;
     this.state={
-          nav: 1
+          nav: 1,
+          frontCate: ''
         }
   }
+
+  getFrontCate(fc){
+    console.log('fc:',fc);
+    // console.log(this);
+    this.setState({
+      frontCate: fc
+    },()=>{
+      console.log(this.state.frontCate);
+      
+    })
+  }
+
   render() {
     return (
       <div id="wrapper-category">
         <div id="category" className="page">
           <ListHeader></ListHeader>
           <div>
-            <Xcategory />
+            <Xcategory sendFc={this.getFrontCate.bind(this)} />
           </div>
-          <NodeList />
+          <NodeList  frontCate={this.state.frontCate} />
         	<Box></Box>
         </div>
         <Xfooter history={this.props.history} nav={this.state.nav} />

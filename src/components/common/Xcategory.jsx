@@ -66,7 +66,7 @@ class Xcategory extends Component {
 			nav:index
 		});
 		// console.log(this.state.CtList[index].frontCate);
-		
+		this.props.sendFc(this.state.CtList[index].frontCate);
 	}
 
 	render() {
@@ -80,7 +80,8 @@ class Xcategory extends Component {
 
 						      		<div key={index} 
 						      			 className={index === this.state.nav ? "item active" : "item"}
-						      			 onClick={this.chooseNav.bind(this,index)}>
+						      			 onClick={this.chooseNav.bind(this,index)}
+						      			 >
 						      			 <span className={item.iconClass}></span>
 						                    {item.text}
 						            </div>
