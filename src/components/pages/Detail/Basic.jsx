@@ -1,38 +1,71 @@
 import React, { Component } from 'react';
 import "animate.css";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import "../../../styles/gallery.scss"
+import Swiper from 'swiper'
 class Basic extends Component {
 	constructor(props) {
 		super(props);
 		this.props = props;
-		console.log(this.props.history)
+		console.log(this.props)
         this.state = {
+            showName:this.props.history,
             films: [],
+            tuji:[],
+            showPlace:[],
             isShowNav: false,
             ShowShare:false,
-            showTu:false
+            showTu:false,
+            more:false,
+            gao:9
+
         }
 	}
        qingqiu(){
         console.log(789)
           React.axios.get('http://localhost:1234/goDetail',{params:{
-                pinyinName:this.props.history
+                pinyinName:this.state.showName
             }
         })
             .then((response) => {
                 console.log(response.data.result);
                 this.setState({
-                        films:response.data.result.activity,     
+                        films:response.data.result.activity,
+                        tuji:response.data.result.activity.actAlbum,
+                        showPlace:response.data.result.activitySeries,
+                        wprice:response.data.result.activity.minPrice },()=>{
+                this.lunbo();
+            
                 })
             })
             .catch(function (error) {
                 console.log(error);
             });
     }
-
     componentDidMount() {
+       window.scrollTo(0,0);
+       this.lunbo()
         this.qingqiu()
+
     }
+
+    gaoliang(index,e){
+        // console.log(this)
+        // console.log(index)
+        this.setState({
+            gao: index
+        })
+        this.state.showName=""
+        this.state.showName=this.state.showPlace[index].pinyinName
+        this.qingqiu(this.state.showName)
+    }
+
+    getmore(){
+        this.setState({
+            more:!false  
+                })
+    }
+
     tanchu(){
       console.log(this.state.inShowNav)
         this.setState({
@@ -40,11 +73,13 @@ class Basic extends Component {
                 })
         
     }
+
     yincang(){
         this.setState({
             isShowNav: false,  
                 })
     }
+
     shareShow(){
       console.log(this.state.inShowNav)
         this.setState({
@@ -52,23 +87,44 @@ class Basic extends Component {
                 })
         
     }
+
     shareNone(){
         this.setState({
             ShowShare: false,  
                 })
     }
+
     tuShow(){
         this.setState({
             showTu: !false,  
                 })
         
     }
+
     tuNone(){
         this.setState({
             showTu: false,  
                 })
     }
+
+    lunbo(){
+        var swiper = new Swiper('.swiper-container', {
+            loop: true,
+          spaceBetween: 30,
+          centeredSlides: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        });
+    }
+
     render() {
+         
         return (
 
    <div id="activity" className="page">
@@ -148,12 +204,20 @@ class Basic extends Component {
                         <br/>
                     </div>
                 </div>
-                <div className="price">
-                    {this.state.films.minPrice}
-                    <span className="sub">
-                        起
-                    </span>
-                </div>
+                 {
+            (()=>{
+                if(Number(this.state.wprice )!= 0){
+                    return ( 
+                            <div className="price">
+                        {this.state.films.minPrice}
+                        <span className="sub">
+                            起
+                        </span>          
+                    </div>
+                            )
+                }
+            })()
+           }          
             </div>
         </div>
 {/*地址*/}
@@ -298,92 +362,104 @@ class Basic extends Component {
             演出介绍
         </h3>
         <div className="block__content intro">
-            <div className="series swiper-container">
+           {
+            (()=>{
+                if(this.state.showPlace){
+                    return (
+            <div className="series">
                 <div className="swiper-wrapper" style={{width: "92px"}}>
-                    <div className="item swiper-slide active">
-                        广州
-                    </div>
+                {
+                    (()=>{
+                       return this.state.showPlace.map((item,index)=>{
+                            return (
+                                <div className={this.state.showName==this.state.showPlace[index].pinyinName?"item swiper-slide active":(index===this.state.gao?"item swiper-slide active":"item swiper-slide")} key={index} onClick={this.gaoliang.bind(this,index)}>
+                                    {item.areaName}
+                                </div>
+                            )
+                       }) 
+                    })()
+                }
+                    
                 </div>
             </div>
-            <div className="collapsed">
+                        )
+                }
+            })()
+           }
+            <div className={this.state.more?"":"collapsed"} >
                 <div className="intro__content">
-                    <div>
-                        <p style={{"textAlign": "center"}}>
-                        </p>
-                        <p style={{"textIndent":"2em"}}>
-                            <strong>
-                                新生代人气男歌手
-                            </strong>
-                        </p>
-                        <p style={{"textIndent":"2em"}}>
-                            身兼创作歌手及演员两职的周柏豪于2007年加入乐坛，曾推出多张畅销的专辑，其代表作有首支出道歌曲《同天空》、第二首单曲《六天》、以及与香港女歌手郑融合唱的《一事无成》。他更曾获得香港叱咤乐坛颁奖典礼的男歌手及唱作人金奖，无论是唱功还是创作能力都备受肯定，是香港新生代歌手的代表之一。近期，周柏豪更在影视圈全面发展，他参与主演的《使徒行者2》于全网热播，拥有超过20亿的播放量，使他的人气更上一层楼。
-                        </p>
-                        <p style={{"textIndent":"2em"}}>
-                            <strong>
-                                分享十年成果
-                            </strong>
-                        </p>
-                        <p style={{"textIndent":"2em"}}>
-                            于2007年正式出道的周柏豪，在今年正好迎来出道10周年的纪念。为了能够回顾自己过去十年的音乐旅程，同时感谢一直以来支持他的歌迷，他在今年开始开启了《One Step Closer Pakho Live》巡演。之前已经举行了的香港、广州、澳门站等，每场都是一票难求，全场爆满。2018年9月15日，周柏豪将在国家会展中心（上海）虹馆EH举行的《One Step Closer Pakho Live 2018-上海站》，届时他将会和歌迷一起重温出道以来的多首大热作品，分享他出道十年的成果。
-                        </p>
-                        <p style={{"textIndent":"2em"}}>
-                            周柏豪希望借着这次演唱会带出一直以来保持的信念，与歌迷真诚分享其努力的成果。此次《One Step Closer Pakho Live》不仅回顾了柏豪出道十年的历程，以及见证其音乐及人生的成长，也是一次感谢祭，借此感谢他的歌迷、他的音乐团队以及重要的家人。歌迷可在欣赏柏豪表演多首感动歌曲的同时，与他一起分享满满的回忆。
-                        </p>
-                        <p style={{"textIndent":"2em"}}>
-                            <br/>
-                        </p>
+                    <div dangerouslySetInnerHTML = {{ __html:this.state.films.content }}>
                     </div>
                     <div className="gallery-wrapper">
-                        <div className="gallery swiper-container">
+                    {
+                        (()=>{
+                            if(this.state.tuji.length>0){
+                                return (
+                            <div className="gallery">
                             <div className="title">
                                 「 演出图集 」
                             </div>
                             <div className="swiper-wrapper">
-                                <div className="swiper-slide">
-                                    <img src="http://image.xishiqu.cn/upload/activity/000/000/934//b/CDD57B6D-F7A7-FEBD-3B64-EF79D21B55AE.jpg" alt="adasdsd"/>
-                                </div>
-                                <div className="swiper-slide">
-                                    <img src="http://image6.xishiqu.cn/upload/activity/000/000/934//b/454A3556-1832-678F-D570-8F7656160E99.jpg" alt="adasdsd"/>
-                                </div>
-                                <div className="swiper-slide">
-                                    <img src="http://image3.xishiqu.cn/upload/activity/000/000/934//b/9E37F852-A73B-E371-E2E8-446FC70520F0.jpg" alt="adasdsd"/>
-                                </div>
-                                <div className="swiper-slide">
-                                    <img src="http://image5.xishiqu.cn/upload/activity/000/000/934//b/865DD4AE-1428-FBE9-1886-4CAA1C4696A2.jpg" alt="adasdsd"/>
-                                </div>
+                            {
+                                (()=>{
+                                    return this.state.tuji.map((item,index)=>{
+                                        return (
+                                            <div className="swiper-slide" key={index}>
+                                                <img src={item} alt="adasdsd"/>
+                                            </div>
+                                                )
+                                    })      
+                                })()
+                            }
+                            
                             </div>
                         </div>
-                        <div className="full-screen swiper-container" style={{"display":"none"}}>
-                            <div className="swiper-wrapper">
-                                <div className="swiper-slide">
-                                    <img className="swiper-lazy" data-src="http://image.xishiqu.cn/upload/activity/000/000/934//o/CDD57B6D-F7A7-FEBD-3B64-EF79D21B55AE.jpg" alt="adasdsd"/>
+                                    )
+                            }
+                        })()
+                       }
+                        
+                        <div className="full-screen swiper-container swiper-container-horizontal swiper-container-ios" style={{display: "none"}}>
+                            <div className="swiper-wrapper" style={{transitionDuration:"0ms",transform: "translate3d(-750px, 0px, 0px)"}}>
+                             {
+                                (()=>{
+                                    return this.state.tuji.map((item,index)=>{
+                                        return (
+                                            <div className="swiper-slide" style={{width: "375px"}} key={index}>
+                                    <img src={item} alt="adasdsd" className="swiper-lazy swiper-lazy-loaded"/>
+                                    
+                                </div>
+                                            )
+                                    })      
+                                })()
+                            }
+                               {/* <div className="swiper-slide" style={{width: "375px"}}>
+                                    <img className="swiper-lazy swiper-lazy-loaded" src="http://image.xishiqu.cn/upload/activity/000/000/934//o/CDD57B6D-F7A7-FEBD-3B64-EF79D21B55AE.jpg"/>
+                                    
+                                </div>
+                                <div className="swiper-slide swiper-slide-prev" style={{width: "375px"}}>
+                                    <img className="swiper-lazy" data-src="http://image6.xishiqu.cn/upload/activity/000/000/934//o/454A3556-1832-678F-D570-8F7656160E99.jpg"/>
                                         <div className="swiper-lazy-preloader swiper-lazy-preloader-white">
                                         </div>
                                     
                                 </div>
-                                <div className="swiper-slide">
-                                    <img className="swiper-lazy" data-src="http://image6.xishiqu.cn/upload/activity/000/000/934//o/454A3556-1832-678F-D570-8F7656160E99.jpg" alt="adasdsd"/>
+                                <div className="swiper-slide swiper-slide-active" style={{width: "375px"}}>
+                                    <img className="swiper-lazy swiper-lazy-loaded" src="http://image3.xishiqu.cn/upload/activity/000/000/934//o/9E37F852-A73B-E371-E2E8-446FC70520F0.jpg"/>
+                                    
+                                </div>
+                                <div className="swiper-slide swiper-slide-next" style={{width: "375px"}}>
+                                    <img className="swiper-lazy" data-src="http://image5.xishiqu.cn/upload/activity/000/000/934//o/865DD4AE-1428-FBE9-1886-4CAA1C4696A2.jpg"/>
                                         <div className="swiper-lazy-preloader swiper-lazy-preloader-white">
                                         </div>
                                     
-                                </div>
-                                <div className="swiper-slide">
-                                    <img className="swiper-lazy" data-src="http://image3.xishiqu.cn/upload/activity/000/000/934//o/9E37F852-A73B-E371-E2E8-446FC70520F0.jpg" alt="adasdsd"/>
-                                        <div className="swiper-lazy-preloader swiper-lazy-preloader-white">
-                                        </div>
-                                    
-                                </div>
-                                <div className="swiper-slide">
-                                    <img className="swiper-lazy" data-src="http://image5.xishiqu.cn/upload/activity/000/000/934//o/865DD4AE-1428-FBE9-1886-4CAA1C4696A2.jpg" alt="adasdsd"/>
-                                        <div className="swiper-lazy-preloader swiper-lazy-preloader-white">
-                                        </div>
-                                    
-                                </div>
+                                </div>*/}
                             </div>
+                            <span aria-atomic="true" aria-live="assertive" className="swiper-notification">
+                            </span>
                         </div>
                     </div>
                 </div>
-                <div className="intro__toggle">
+                <div className="intro__toggle" onClick={this.getmore.bind(this)} style={{"display":this.state.more?"none":"block"}}>
                     展开更多
                 </div>
             </div>
