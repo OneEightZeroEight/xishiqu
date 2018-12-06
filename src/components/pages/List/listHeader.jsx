@@ -27,7 +27,7 @@ class listHeader extends Component {
                     </div>
                 </div>
                 <div className="right">
-                    <div className="sorts">
+                    <div className="sorts" onClick={this.props.toggleBox.bind(this)}>
                         <i className="btn btn-sort">
                         </i>
                         <div className="sorts__modal modal" style={{display: "none"}}>

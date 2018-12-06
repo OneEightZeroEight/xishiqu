@@ -63,7 +63,7 @@ class List extends Component {
     <div className="block-wrapper">
         
         <div className="node-list">
-            <div className="wrapper" style={{width: '80.4rem'}}>
+            <div className="wrapper" >
                 {
                 	(()=>{
                 		return this.state.showList.map((item,idx)=>{
