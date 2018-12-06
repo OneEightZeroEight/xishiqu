@@ -11,6 +11,8 @@ import './styles/act.scss';
 import './styles/film.css';
 import './styles/city.css';
 import './styles/category.scss'
+import './styles/Calendar.scss'
+
 import App from './App';
 // 路由
 
@@ -66,6 +68,7 @@ if(golbalCode === ''){
 const store = createStore((state = {
 	isShowBox:false,
     cityCode:golbalCode,
+    categoryIdx: 0,
     isShowNav: false,
     isShowGallery: {
         bool: false,
@@ -88,6 +91,11 @@ const store = createStore((state = {
             return {
                 ...state,
                 isShowBox:action.isShowBox
+            }
+        case 'setCategoryIdx':
+            return {
+                ...state,
+                categoryIdx:action.categoryIdx
             }
         default:
             return state

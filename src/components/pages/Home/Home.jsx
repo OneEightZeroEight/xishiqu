@@ -5,7 +5,7 @@ import Huaju from './Huaju.jsx'
 import Lunbo from './Lunbo.jsx'
 import Xheader from '../../common/Xheader.jsx';
 import Xfooter from '../../common/Xfooter.jsx';
-import Xcotegory from '../../common/Xcategory.jsx';
+import Hcotegory from './Hcategory.jsx';
 import Recommends from './Recommends.jsx'
 import { Route } from "react-router-dom";
 import Show from './Show.jsx'
@@ -33,7 +33,7 @@ class Home extends Component {
 						<Lunbo></Lunbo>
 					</div>
 					<div className="block-wrapper">
-						<Xcotegory />
+						<Hcotegory history={this.props.history} />
 			            <Recommends></Recommends>
 			            <Show history={this.props.history}></Show>
 			            <Route path="/home/one/" component={List} />
@@ -43,6 +43,7 @@ class Home extends Component {
 			            <Route path="/home/five/" component={List} />
 			            <Route path="/home/six/" component={List} />
 			            <Route path="/home/seven/" component={List} />
+			            <Route path="/home/init/" component={List} />
 			            <Concert></Concert>
 			      		<Huaju></Huaju>
 					

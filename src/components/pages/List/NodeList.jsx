@@ -44,6 +44,11 @@ class NodeList extends Component{
 		this.getCategoryList(nextProps.frontCate,'','-1','1','020');
 	}
 
+	linkToDt(name,e){
+		// console.log(name);
+		this.props.history.push({pathname: '/detail/'+name})
+	}
+
 	render(){
 		return (
 			<div className="node-list">
@@ -56,8 +61,18 @@ class NodeList extends Component{
     					}else{
     						if(this.state.listType !== 'film'){
 			    				return	this.state.listData.map((item,index)=>{
+			    						var Price = '';
+			    						if(item.hasTicket){
+			    							Price = (
+			    									<div>
+									                    <span>￥{item.lowPrice}</span>
+									                    <span className="sub">起</span>
+									                </div>
+									                 )
+			    						}
+
 			    						return (
-			    							<div key={index} className="node node--activity horizontal">
+			    							<div key={index} onClick={this.linkToDt.bind(this,item.pinyinName)} className="node node--activity horizontal">
 							        			<div className="thumbnail" 
 							        				style={{backgroundImage: `url(${item.actImgUrl})`}}>
 									            </div>
@@ -67,10 +82,7 @@ class NodeList extends Component{
 									            	<div className="venue">{item.veName}</div>
 									            	<div className="tags"></div>
 									            	<div className="price">
-									                	<div>
-									                    <span>￥{item.lowPrice}</span>
-									                    <span className="sub">起</span>
-									                    </div>
+									                	{Price}
 									                </div>
 									            	<div className="quote">{item.intro}</div>
 									            </div>

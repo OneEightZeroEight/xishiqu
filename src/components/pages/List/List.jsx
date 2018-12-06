@@ -4,6 +4,8 @@ import Xcategory from '../../common/Xcategory.jsx';
 import NodeList from './NodeList.jsx';
 import Xfooter from '../../common/Xfooter.jsx';
 import Box from './Box.jsx'
+import Calendar from './Calendar.jsx'
+
 
 class List extends Component {
   constructor(props){
@@ -30,11 +32,11 @@ class List extends Component {
     return (
       <div id="wrapper-category">
         <div id="category" className="page">
-          <ListHeader></ListHeader>
+          <ListHeader history={this.props.history}></ListHeader>
           <div>
             <Xcategory sendFc={this.getFrontCate.bind(this)} />
           </div>
-          <NodeList  frontCate={this.state.frontCate} />
+          <NodeList history={this.props.history}  frontCate={this.state.frontCate} />
         	<Box></Box>
         </div>
         <Xfooter history={this.props.history} nav={this.state.nav} />
