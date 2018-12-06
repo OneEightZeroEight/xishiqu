@@ -1,7 +1,16 @@
 import * as serviceWorker from './libs/serviceWorker';
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import { HashRouter as Router } from 'react-router-dom';
+
+import './styles/app.css';
+import './styles/home.css';
+import './styles/activity.scss';
+import './styles/act.scss';
+import './styles/film.css';
+import './styles/city.css';
+
 
 // 状态管理 配置store的
 import { createStore } from 'redux'
@@ -10,9 +19,7 @@ import { Provider } from 'react-redux';
 
 import App from './App.js';
 
-import './styles/app.css';
-import './styles/home.css';
-import './styles/city.css';
+
 
 import axios from 'axios';
 React.axios = axios;

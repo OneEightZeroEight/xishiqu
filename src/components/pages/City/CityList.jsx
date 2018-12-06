@@ -52,8 +52,9 @@ class CityList extends Component {
 	}
 
 
+
 	getCityList(){
-		var arr=[];
+		var arr = [];
 		React.axios.get(`http://localhost:1234/getCityList`
 	      )
 	      .then((res)=>{
@@ -77,7 +78,7 @@ class CityList extends Component {
 					cityList: arr
 				})
 
-				// console.log(this.state.cityList);
+				
 	        	
 	      })
 	      .catch((err)=>{
@@ -95,6 +96,7 @@ class CityList extends Component {
 		this.setState({
 			cityName: name
 		})
+		
 	}
 
 	render() {
@@ -107,8 +109,7 @@ class CityList extends Component {
 				    <div className="location">
 				      当前定位城市：
 				    	<span className="city--name">{this.state.cityName}</span>
-				    </div>
-
+				   	</div>
 
 				    <ul className="list list-unstyled">
 

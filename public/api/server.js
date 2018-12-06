@@ -94,9 +94,6 @@ app.get("/getKeywordData",(req,res)=>{
 })
 
 
-
-
-
 //获取地点
 //http://m.xishiqu.com/ajax/home/setCity?cityCode=020
 app.get("/getCity", (req, res) => {
@@ -109,10 +106,25 @@ app.get("/getCity", (req, res) => {
 })
 
 
+// 详情页
+// http://m.xishiqu.com/ajax/activity/detail?pinyinName=wosylgz
+app.get("/goDetail", (req, res) => {
+
+	res.append("Access-Control-Allow-Origin", "*");
+
+	request(`http://m.xishiqu.com/ajax/activity/detail?pinyinName=${req.query.pinyinName}`, (err, result, body) => {
+		res.send(body);
+	});
+})
+
+
 
 //获取广州信息
 // http://m.xishiqu.com/ajax/home/index?cityCode=020
+
+
 app.get("/getIndexData", (req, res) => {
+
 
 	res.append("Access-Control-Allow-Origin", "*");
 	res.append("Content-Type", "application/json");
@@ -125,7 +137,6 @@ app.get("/getIndexData", (req, res) => {
 	console.log(req.query.cityCode);
 
 
-
 	request({
 		url: `http://m.xishiqu.com/ajax/home/index?cityCode=${req.query.cityCode}`,
 		headers: {
@@ -135,50 +146,15 @@ app.get("/getIndexData", (req, res) => {
 	}, (err, result, body) => {
 		res.send(body);
 	});
+
 })
 
-// app.get("/getIndexData020",(req,res)=>{
-
-// 	res.append("Access-Control-Allow-Origin", "*");
-// 	res.append("Content-Type", "application/json");
 
 
-
-// 	request(`http://m.xishiqu.com/ajax/home/index?cityCode=020`,(err,result,body)=>{
-// 			res.send(body);
-// 		});
-// })
-
-// app.get("/getIndexData411",(req,res)=>{
-
-// 	res.append("Access-Control-Allow-Origin", "*");
-// 	res.append("Content-Type", "application/json");
-// 	res.append("Pragma", "no-cache");
-
-
-
-// 	request(`http://m.xishiqu.com/ajax/home/index?cityCode=411`,(err,result,body)=>{
-// 			res.send(body);
-// 		});
-// })
-
-// app.get("/getIndexData591",(req,res)=>{
-
-// 	res.append("Access-Control-Allow-Origin", "*");
-// 	res.append("Content-Type", "application/json");
-
-
-
-// 	request(`http://m.xishiqu.com/ajax/home/index?cityCode=591`,(err,result,body)=>{
-// 			res.send(body);
-// 		});
-// })
-
-
-
-var server = app.listen(1234, () => {
-	var host = server.address().address
-	var port = server.address().port
-
-	console.log('server start in port ' + 1234);
+var server = app.listen(1234,()=>{
+    var host = server.address().address
+    var port = server.address().port
+ 
+    // console.log("访问地址为 http://%s:%s", host, port);
+	console.log('server start in port '+1234);
 })

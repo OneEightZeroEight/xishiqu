@@ -53,4 +53,3 @@ class Xcategory extends Component {
 
 export default Xcategory;
 
-

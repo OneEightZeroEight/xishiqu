@@ -4,7 +4,7 @@ class Xfooter extends Component {
   render() {
     return (
       <div className="bottom-toolbar">
-	   <div className="item">
+	   <div className="item active">
 	    <span className="i home"></span> 
 	    <span className="text">首页</span>
 	   </div>
