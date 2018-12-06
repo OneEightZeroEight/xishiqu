@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
+import Wgallery from './Wgallery.jsx'
 import "animate.css";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import "../../../styles/gallery.scss"
 import Swiper from 'swiper'
+import { connect } from 'react-redux';
 class Basic extends Component {
 	constructor(props) {
 		super(props);
 		this.props = props;
-		console.log(this.props)
+		console.log(this.props,props)
         this.state = {
             showName:this.props.history,
             films: [],
@@ -21,6 +23,10 @@ class Basic extends Component {
 
         }
 	}
+    navigateTo(e){
+        console.log(123)
+        this.props.backto.history.go(-1)
+    }
        qingqiu(){
         console.log(789)
           React.axios.get('http://localhost:1234/goDetail',{params:{
@@ -112,6 +118,7 @@ class Basic extends Component {
             loop: true,
           spaceBetween: 30,
           centeredSlides: true,
+        
           pagination: {
             el: '.swiper-pagination',
             clickable: true,
@@ -130,7 +137,7 @@ class Basic extends Component {
    <div id="activity" className="page">
    {/*头顶*/}
                <div className="page__header">
-                <div className="left">
+                <div className="left" onClick={this.navigateTo.bind(this)}>
                     <i className="icon icon-angle-left">
                     </i>
                 </div>
@@ -395,16 +402,17 @@ class Basic extends Component {
                         (()=>{
                             if(this.state.tuji.length>0){
                                 return (
-                            <div className="gallery">
+                            <div className="gallery swiper-container">
                             <div className="title">
                                 「 演出图集 」
                             </div>
-                            <div className="swiper-wrapper">
+                            <div className="swiper-wrapper " style={{width: "200px"}}>
                             {
                                 (()=>{
                                     return this.state.tuji.map((item,index)=>{
                                         return (
-                                            <div className="swiper-slide" key={index}>
+                                            <div className="swiper-slide" key={index} 
+                                            onClick={this.props.toggleGallery.bind(this, item)}>
                                                 <img src={item} alt="adasdsd"/>
                                             </div>
                                                 )
@@ -413,50 +421,16 @@ class Basic extends Component {
                             }
                             
                             </div>
+                            <Wgallery chuan={this.state.tuji}></Wgallery> 
                         </div>
                                     )
+
                             }
+
                         })()
                        }
                         
-                        <div className="full-screen swiper-container swiper-container-horizontal swiper-container-ios" style={{display: "none"}}>
-                            <div className="swiper-wrapper" style={{transitionDuration:"0ms",transform: "translate3d(-750px, 0px, 0px)"}}>
-                             {
-                                (()=>{
-                                    return this.state.tuji.map((item,index)=>{
-                                        return (
-                                            <div className="swiper-slide" style={{width: "375px"}} key={index}>
-                                    <img src={item} alt="adasdsd" className="swiper-lazy swiper-lazy-loaded"/>
-                                    
-                                </div>
-                                            )
-                                    })      
-                                })()
-                            }
-                               {/* <div className="swiper-slide" style={{width: "375px"}}>
-                                    <img className="swiper-lazy swiper-lazy-loaded" src="http://image.xishiqu.cn/upload/activity/000/000/934//o/CDD57B6D-F7A7-FEBD-3B64-EF79D21B55AE.jpg"/>
-                                    
-                                </div>
-                                <div className="swiper-slide swiper-slide-prev" style={{width: "375px"}}>
-                                    <img className="swiper-lazy" data-src="http://image6.xishiqu.cn/upload/activity/000/000/934//o/454A3556-1832-678F-D570-8F7656160E99.jpg"/>
-                                        <div className="swiper-lazy-preloader swiper-lazy-preloader-white">
-                                        </div>
-                                    
-                                </div>
-                                <div className="swiper-slide swiper-slide-active" style={{width: "375px"}}>
-                                    <img className="swiper-lazy swiper-lazy-loaded" src="http://image3.xishiqu.cn/upload/activity/000/000/934//o/9E37F852-A73B-E371-E2E8-446FC70520F0.jpg"/>
-                                    
-                                </div>
-                                <div className="swiper-slide swiper-slide-next" style={{width: "375px"}}>
-                                    <img className="swiper-lazy" data-src="http://image5.xishiqu.cn/upload/activity/000/000/934//o/865DD4AE-1428-FBE9-1886-4CAA1C4696A2.jpg"/>
-                                        <div className="swiper-lazy-preloader swiper-lazy-preloader-white">
-                                        </div>
-                                    
-                                </div>*/}
-                            </div>
-                            <span aria-atomic="true" aria-live="assertive" className="swiper-notification">
-                            </span>
-                        </div>
+                       
                     </div>
                 </div>
                 <div className="intro__toggle" onClick={this.getmore.bind(this)} style={{"display":this.state.more?"none":"block"}}>
@@ -505,4 +479,19 @@ class Basic extends Component {
     }
 }
 
-export default Basic;
+export default connect((state)=>{
+    return state
+},(dispatch)=>{
+    return {
+        toggleGallery(src){
+            console.log(src)
+            dispatch({
+                type:"toggleGallery",
+                isShowGallery:{
+                    bool: !this.props.isShowGallery.bool,
+                    src
+                }
+            })
+        }
+    }
+})(Basic)
