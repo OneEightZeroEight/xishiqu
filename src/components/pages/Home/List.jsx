@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom";
 class List extends Component {
 	constructor(props){
 		super(props);
@@ -62,15 +63,15 @@ class List extends Component {
     <div className="block-wrapper">
         
         <div className="node-list">
-            <div className="wrapper" style={{width: '134.4rem'}}>
+            <div className="wrapper" style={{width: '80.4rem'}}>
                 {
                 	(()=>{
                 		return this.state.showList.map((item,idx)=>{
                 			return (
-                				<div key={idx} className="node node--activity vertical">
+                				<Link key={idx} className="node node--activity vertical" to={ '/detail/' +item.pinyinName }>
                     
                     
-                    <div className="thumbnail" style={{backgroundImage: `url(${item.actImgUrl})`}}>
+                    <div className="thumbnail" style={{backgroundImage: `url(${item.actImgUrl})` ,width: '10rem'}}>
                         
                         <div className="thumbnail__hot">
                             <span>
@@ -102,7 +103,7 @@ class List extends Component {
                         </div>
                     </div>
                     
-                </div>
+                </Link>
                 				)
                 		})
                 	})()

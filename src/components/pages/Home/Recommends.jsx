@@ -11,11 +11,10 @@ class Recommends extends Component {
 		}
 	}
 	getData(){
-		React.axios.get('http://localhost:1234/getIndexDate',{
-			params:{
-				cityCode:'020'
-			}
-		})
+		React.axios.get('http://localhost:1234/getIndexData',{params:{
+            cityCode:'020'
+        }
+    })
 		.then( (res)=> {
 	    	let commendData = res.data.result.mktInfo;
 	    	let arr = [];

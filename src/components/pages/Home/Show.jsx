@@ -13,11 +13,10 @@ class Show extends Component {
 		}
 	}
 	getData(){
-		React.axios.get('http://localhost:1234/getIndexDate',{
-			params:{
-				cityCode:'020'
-			}
-		})
+		React.axios.get('http://localhost:1234/getIndexData',{params:{
+			cityCode:'020'
+		}
+	})
 		.then((res)=>{
 			console.log(res);
 			let totalday = res.data.result.activitySevenInfo;

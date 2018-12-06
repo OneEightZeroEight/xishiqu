@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import listHeader from './listHeader.jsx'
+import ListHeader from './listHeader.jsx'
+import Box from './Box.jsx'
 
 class List extends Component {
   constructor(props){
@@ -9,7 +10,8 @@ class List extends Component {
   render() {
     return (
       <div className="List">
-      	
+      <ListHeader></ListHeader>
+      	<Box></Box>
       </div>
     );
   }

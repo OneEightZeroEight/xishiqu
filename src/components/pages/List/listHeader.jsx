@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
 
 class listHeader extends Component {
   constructor(props){
@@ -57,4 +57,15 @@ class listHeader extends Component {
   }
 }
 
-export default listHeader;
+export default connect((state)=>{
+    return state
+},(dispatch=>{
+    return {
+    toggleBox(){
+      dispatch({
+        type:"toggleBox",
+        isShowBox:!this.props.isShowBox,
+      })
+    }
+  }
+}))(listHeader);
