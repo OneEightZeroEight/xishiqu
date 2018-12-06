@@ -23,13 +23,13 @@ class Xheader extends Component {
 	getCookie(cname){
 		var name = cname + "=";
 		var ca = document.cookie.split(';');
-		console.log("获取cookie,现在循环");
+		// console.log("获取cookie,现在循环");
 		for (var i = 0; i < ca.length; i++){
 			var c = ca[i];
 			// console.log(c);
 			while (c.charAt(0) === ' ') c = c.substring(1);
 			if (c.indexOf(name) !== -1){
-				console.log(c.substring(name.length, c.length));
+				// console.log(c.substring(name.length, c.length));
 				return c.substring(name.length, c.length);
 			}
 		}
@@ -38,7 +38,7 @@ class Xheader extends Component {
 
 	componentDidMount(){
 		var code = this.getCookie('cityCode');
-		console.log(code);
+		// console.log(code);
 		if(code === ''){
 			this.setState({
 				cityName: '上海'
