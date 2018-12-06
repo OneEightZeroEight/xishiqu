@@ -16,13 +16,13 @@ class CityList extends Component {
 	}
 
 	navigateTo(e){
-		this.props.history.push({pathname: '/home'});
+		this.props.history.go(-1)
 	}
 
 	checkTo(code,e){
 		this.setCookie('cityCode',code,1);
 		this.setCookie('cityName',e.target.innerText,1);
-		this.props.history.push({pathname: '/home'});
+		this.props.history.go(-1)
 	}
 
 	setCookie(cname, cvalue, exdays){

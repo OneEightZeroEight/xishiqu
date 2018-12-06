@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ListHeader from './listHeader.jsx'
 import Box from './Box.jsx'
+import Calendar from './Calendar.jsx'
+
 
 class List extends Component {
   constructor(props){
@@ -9,9 +11,14 @@ class List extends Component {
   }
   render() {
     return (
+          <div id="wrapper-category">
+        <div className="page" id="category">
       <div className="List">
-      <ListHeader></ListHeader>
+      <ListHeader history={this.props.history}></ListHeader>
       	<Box></Box>
+        <Calendar></Calendar>
+      </div>
+      </div>
       </div>
     );
   }

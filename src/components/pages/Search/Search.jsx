@@ -53,7 +53,7 @@ class Search extends Component {
 	}
 
 	navigateTo(e){
-		this.props.history.push({pathname: '/home'});
+		this.props.history.go(-1)
 	}
 
 	hideList(e){

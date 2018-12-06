@@ -11,6 +11,8 @@ import './styles/act.scss';
 import './styles/film.css';
 import './styles/city.css';
 import './styles/category.scss'
+import './styles/Calendar.scss'
+
 import App from './App';
 // 路由
 

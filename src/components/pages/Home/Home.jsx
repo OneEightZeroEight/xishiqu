@@ -40,6 +40,7 @@ class Home extends Component {
 			            <Route path="/home/five/" component={List} />
 			            <Route path="/home/six/" component={List} />
 			            <Route path="/home/seven/" component={List} />
+			            <Route path="/home/init/" component={List} />
 			            <Concert></Concert>
 			      		<Huaju></Huaju>
 					
