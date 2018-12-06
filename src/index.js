@@ -10,6 +10,11 @@ import './styles/activity.scss';
 import './styles/act.scss';
 import './styles/film.css';
 import './styles/city.css';
+import './styles/category.scss'
+import App from './App';
+// 路由
+
+
 
 
 // 状态管理 配置store的
@@ -17,12 +22,15 @@ import { createStore } from 'redux'
 // 把上面配置好的store和react进行关联
 import { Provider } from 'react-redux';
 
-import App from './App.js';
 
 
 
 import axios from 'axios';
 React.axios = axios;
+
+
+        
+
 
 // 它是状态管理的配置参数，函数第一个参数为state，就是存储组件需要通信和交换的数据
 // 第二个参数是action，它是触发，他需要其他组件传递一个信号，
@@ -56,6 +64,7 @@ if(golbalCode === ''){
 // state交换数据的仓库
 // action交换数据的动作
 const store = createStore((state = {
+	isShowBox:false,
     cityCode:golbalCode,
     isShowNav: false,
     isShowGallery: {
@@ -75,6 +84,11 @@ const store = createStore((state = {
                 ...state,
                 isShowGallery:action.isShowGallery
             }
+        case 'toggleBox':
+            return {
+                ...state,
+                isShowBox:action.isShowBox
+            }
         default:
             return state
     }
@@ -82,12 +96,13 @@ const store = createStore((state = {
 
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Router>
-            <App />
-        </Router>
-    </Provider>
+	<Provider store={store}>
+		<Router>
+		<App />
+		</Router>
+	</Provider>
 , document.getElementById('root'));
+
 
 
 
