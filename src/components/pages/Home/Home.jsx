@@ -11,7 +11,7 @@ import { Route } from "react-router-dom";
 import Show from './Show.jsx'
 import List from './List.jsx'
 import Concert from './Concert.jsx'
-import MovieData from './MovieData.jsx'
+// import MovieData from './MovieData.jsx'
 
 class Home extends Component {
   
@@ -19,6 +19,9 @@ class Home extends Component {
 	constructor(props){
         super(props);
         this.props = props;
+        this.state={
+        	nav: 0
+        }
     }
 	render() {
 		return (
@@ -46,7 +49,7 @@ class Home extends Component {
 					</div>
 		          	<div className="report"><span className="text">举报电话：<a href="tel:021-52398129" className="tel">021-52398129-403</a></span></div>
 				</div>
-				<Xfooter />
+				<Xfooter history={this.props.history} nav={this.state.nav} />
 			</div>
 		);
 	}

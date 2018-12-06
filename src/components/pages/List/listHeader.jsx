@@ -8,9 +8,7 @@ class listHeader extends Component {
   }
   render() {
     return (
-<div className="listHeader">
-    <div id="wrapper-category">
-        <div className="page" id="category">
+
             <div className="page__header">
                 <div className="left">
                     <i className="icon icon-angle-left">
@@ -50,9 +48,7 @@ class listHeader extends Component {
                     </i>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
+
 );
   }
 }
