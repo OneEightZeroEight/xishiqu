@@ -35,13 +35,32 @@ class NodeList extends Component{
 	      })
 	}
 
+	//获取cookie
+	getCookie(cname){
+		var name = cname + "=";
+		var ca = document.cookie.split(';');
+		// console.log("获取cookie,现在循环");
+		for (var i = 0; i < ca.length; i++){
+			var c = ca[i];
+			// console.log(c);
+			while (c.charAt(0) === ' ') c = c.substring(1);
+			if (c.indexOf(name) !== -1){
+				// console.log(c.substring(name.length, c.length));
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+
 	componentDidMount(){
-		this.getCategoryList(this.props.frontCate,'','-1','1','020');
+		var cityCode = this.getCookie('cityCode');
+		this.getCategoryList(this.props.frontCate,'','-1','1',cityCode);
 	}
 
 	componentWillReceiveProps(nextProps){
 		this.setState({listType: nextProps.frontCate});
-		this.getCategoryList(nextProps.frontCate,'','-1','1','020');
+		var cityCode = this.getCookie('cityCode');
+		this.getCategoryList(nextProps.frontCate,'','-1','1',cityCode);
 	}
 
 	linkToDt(name,e){
