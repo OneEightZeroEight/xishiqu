@@ -134,7 +134,7 @@ app.get("/getIndexData", (req, res) => {
 	res.append("Expires",-1);
 
 
-	console.log(req.query.cityCode);
+	// console.log(req.query.cityCode);
 
 
 	request({
@@ -147,6 +147,24 @@ app.get("/getIndexData", (req, res) => {
 		res.send(body);
 	});
 
+})
+
+
+//分类页
+//获取分类列表（4个参数，加上cookie的cityCode）
+//http://m.xishiqu.com/ajax/activity/list?frontCate=&date=&order=-1&page=1
+app.get("/getCategoryList",(req,res)=>{
+	res.append("Access-Control-Allow-Origin", "*");
+
+	request({
+		url: `http://m.xishiqu.com/ajax/activity/list?frontCate=${req.query.frontCate}&date=${req.query.date}&order=${req.query.order}&page=${req.query.page}`,
+		headers: {
+			'Cookie': `cityCode=${req.query.cityCode}`
+		}
+
+	}, (err, result, body) => {
+		res.send(body);
+	});	
 })
 
 

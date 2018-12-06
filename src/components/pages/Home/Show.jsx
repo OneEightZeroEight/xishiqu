@@ -48,17 +48,12 @@ class Show extends Component {
 				day:titleArr,
 				list:listArr
 			},()=>{
-				console.log(this.state.list[0])
-				let storage= window.localStorage;
-    			let obj =JSON.parse(localStorage.getItem("list"));
-    			console.log($('.itm'))
-				// if(!obj){
-					this.props.history.push({pathname:this.state.href[0],state:{name:this.state.list[0]}});
 
-				// }
-				// else{
-				// 	this.props.history.push({pathname:obj.href,state:{name:obj.listData}})
-				// }
+    			console.log('kkk')
+				
+					this.props.history.push({pathname:'/home/init/',state:{name:this.state.list[0]}});
+
+				
 			})
 			console.log(this.state.list);
 
@@ -77,14 +72,7 @@ class Show extends Component {
 			$(item).removeClass('active')
 			})
 			$(e.target).addClass('active');
-			//console.log(this.state.list[idx])
-			let obj ={};
-		      obj.listData=this.state.list[idx];
-		      obj.index=idx;
-		      obj.href=this.state.href[idx];
-		      let storage = window.localStorage;
-		      storage.setItem("list", JSON.stringify(obj));
-		      console.log(JSON.parse(localStorage.getItem("list")))
+			
 			this.props.history.push({pathname:this.state.href[idx],state:{name:this.state.list[idx]}})
 		}
 		

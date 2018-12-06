@@ -53,7 +53,7 @@ class Search extends Component {
 	}
 
 	navigateTo(e){
-		this.props.history.push({pathname: '/home'});
+		this.props.history.go(-1)
 	}
 
 	hideList(e){
@@ -138,7 +138,7 @@ class Search extends Component {
 				    		{
 				    			(()=>{
 				    				if(!this.state.ifShow){
-				    					return (<ShowList text={this.state.inputText}  newText={this.state.sendText} />)
+				    					return (<ShowList history={this.props.history} text={this.state.inputText}  newText={this.state.sendText} />)
 				    				}
 				    			})()
 				    		}

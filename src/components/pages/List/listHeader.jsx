@@ -1,35 +1,99 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+
 class listHeader extends Component {
   constructor(props){
     super(props);
     this.props=props;
+    this.state={
+      cityName: ''
+    }
   }
+  navigateTo(e){
+    console.log(e);
+    // console.log(this.props.history);
+    this.props.history.push({pathname: '/city'});
+  }
+
+  linkToSearch(e){
+    this.props.history.push({pathname: '/search'});
+  }
+
+  //获取cookie
+  getCookie(cname){
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    console.log("获取cookie,现在循环");
+    for (var i = 0; i < ca.length; i++){
+      var c = ca[i];
+      // console.log(c);
+      while (c.charAt(0) === ' ') c = c.substring(1);
+      if (c.indexOf(name) !== -1){
+        console.log(c.substring(name.length, c.length));
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
+
+  getCityName(cityCode){
+
+    React.axios.get(`http://localhost:1234/getCity?cityCode=${cityCode}`
+        )
+        .then((res)=>{
+            // console.log(res.data.result.cityName);
+            this.setState({
+              cityName: res.data.result.cityName
+            })
+            // console.log(this.state.cityName);
+        })
+        .catch((err)=>{
+          
+          console.log(err)
+        })
+  }
+
+  componentDidMount(){
+    var code = this.getCookie('cityCode');
+    console.log(code);
+    if(code === ''){
+      this.setState({
+        cityName: '上海'
+      })
+    }else{
+      this.getCityName(code);
+    }
+
+  }
+
+  backHome(){
+    this.props.history.push({pathname:'/'})
+  }
+
   render() {
     return (
 <div className="listHeader">
-    <div id="wrapper-category">
-        <div className="page" id="category">
+
             <div className="page__header">
-                <div className="left">
-                    <i className="icon icon-angle-left">
+                <div className="left" >
+                    <i onClick={this.backHome.bind(this)} className="icon icon-angle-left">
                     </i>
-                    <div>
-                        上海
+                    <div onClick={this.navigateTo.bind(this)}  >
+                        {this.state.cityName}
                         <i className="icon icon-angle-down">
                         </i>
                     </div>
                 </div>
                 <div className="middle">
-                    <div className="search">
+                    <div className="search" onClick={this.linkToSearch.bind(this)}>
                         <i className="icon icon-search">
                         </i>
                         <input placeholder="搜索明星、演出、场馆" type="text"/>
                     </div>
                 </div>
                 <div className="right">
-                    <div className="sorts">
+                    <div className="sorts" onClick={this.props.toggleBox.bind(this)}>
                         <i className="btn btn-sort">
                         </i>
                         <div className="sorts__modal modal" style={{display: "none"}}>
@@ -50,9 +114,10 @@ class listHeader extends Component {
                     </i>
                 </div>
             </div>
-        </div>
+
+
     </div>
-</div>
+    
 );
   }
 }

@@ -19,16 +19,20 @@ class ShowList extends Component {
 		    }
 		  })
 	      .then((res)=>{
-	      		console.log(res.data.result);
+	      		// console.log(res.data.result);
 	        	this.setState({
 	        		searchList: res.data.result
 	        	})
-	        	// console.log(this.state.cityData);
+	        	console.log(this.state.searchList);
 	      })
 	      .catch((err)=>{
 	        
 	        console.log(err)
 	      })
+	}
+
+	linkToDt(name,e){
+		this.props.history.push({pathname: '/detail/'+name})
 	}
 
 
@@ -54,7 +58,7 @@ class ShowList extends Component {
 			    		(()=>{
 			    			return this.state.searchList.map((item,index)=>{
 			    				return (
-			    						<div key={index} className="vague-item">
+			    						<div key={index} onClick={this.linkToDt.bind(this,item.pinyinName)} className="vague-item">
 									      <span className="item__left">{item.result}</span> 
 									      <span className="item__right">{item.area}</span>
 									     </div>
