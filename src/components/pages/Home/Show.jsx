@@ -12,9 +12,27 @@ class Show extends Component {
 			
 		}
 	}
-	getData(){
+	//获取cookie
+	getCookie(cname){
+		var name = cname + "=";
+		var ca = document.cookie.split(';');
+		// console.log("获取cookie,现在循环");
+		for (var i = 0; i < ca.length; i++){
+			var c = ca[i];
+			// console.log(c);
+			while (c.charAt(0) === ' ') c = c.substring(1);
+			if (c.indexOf(name) !== -1){
+				// console.log(c.substring(name.length, c.length));
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+
+	getData(code){
+		console.log(11)
 		React.axios.get('http://localhost:1234/getIndexData',{params:{
-			cityCode:'020'
+			cityCode:code
 		}
 	})
 		.then((res)=>{
@@ -26,6 +44,7 @@ class Show extends Component {
 				titleArr.push(totalday[i].title);
 				listArr.push(totalday[i].list)
 			}
+			console.log(titleArr)
 			this.setState({
 				day:titleArr,
 				list:listArr
@@ -49,7 +68,8 @@ class Show extends Component {
 		})
 	}
 	componentDidMount(){
-		this.getData();
+		var code =this.getCookie('cityCode');
+		this.getData(code);
 	}
 	changecolor(idx,e){
 		if(!$(e.target).hasClass('active')){

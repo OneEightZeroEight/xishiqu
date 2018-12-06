@@ -6,9 +6,10 @@
     "animate": "^1.0.0",
     "animate.css": "^3.7.0",
     "axios": "^0.18.0",
-    "node-sass": "^4.10.0",
+    "eventemitter3": "^3.1.0",
     "express": "^4.16.4",
     "jquery": "^3.3.1",
+    "node-sass": "^4.10.0",
     "react": "^16.6.3",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.6.3",
@@ -17,10 +18,9 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
-    "sass-loader": "^7.1.0",
     "request": "^2.88.0",
+    "sass-loader": "^7.1.0",
     "swiper": "^4.4.2"
-
   },
   "scripts": {
     "start": "react-scripts start",
@@ -39,8 +39,7 @@
   ],
   "devDependencies": {
     "http-proxy-middleware": "^0.19.1",
-    "node-sass":"^4.10.0",
+    "node-sass": "^4.10.0",
     "sass-loader": "^7.1.0"
-
   }
 }
