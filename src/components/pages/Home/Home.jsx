@@ -6,6 +6,7 @@ import { Route } from "react-router-dom";
 import Show from './Show.jsx'
 import List from './List.jsx'
 import Concert from './Concert.jsx'
+import MovieData from './MovieData.jsx'
 
 class Home extends Component {
   constructor(props){
@@ -29,6 +30,7 @@ class Home extends Component {
             <Route path="/home/six/" component={List} />
             <Route path="/home/seven/" component={List} />
             <Concert></Concert>
+
 	        	<Huaju></Huaju>
         	</div>
 
