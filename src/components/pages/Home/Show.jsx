@@ -30,7 +30,6 @@ class Show extends Component {
 	}
 
 	getData(code){
-		console.log(11)
 		React.axios.get('http://localhost:1234/getIndexData',{params:{
 			cityCode:code
 		}
@@ -53,12 +52,13 @@ class Show extends Component {
 				let storage= window.localStorage;
     			let obj =JSON.parse(localStorage.getItem("list"));
     			console.log($('.itm'))
-				if(!obj){
+				// if(!obj){
 					this.props.history.push({pathname:this.state.href[0],state:{name:this.state.list[0]}});
 
-				}else{
-					this.props.history.push({pathname:obj.href,state:{name:obj.listData}})
-				}
+				// }
+				// else{
+				// 	this.props.history.push({pathname:obj.href,state:{name:obj.listData}})
+				// }
 			})
 			console.log(this.state.list);
 
@@ -103,7 +103,7 @@ class Show extends Component {
         {
         	(()=>{
         		return this.state.day.map((itm,idx)=>{
-        			return <span className={idx===(JSON.parse(localStorage.getItem("list"))?JSON.parse(localStorage.getItem("list")).index:0)?'item active':'item'} onClick={this.changecolor.bind(this,idx)} key={idx} >{itm}</span>
+        			return <span className={idx===0?'item active':'item'} onClick={this.changecolor.bind(this,idx)} key={idx} >{itm}</span>
         		})
         	})()
         }
