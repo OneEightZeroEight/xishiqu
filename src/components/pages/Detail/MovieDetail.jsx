@@ -1,5 +1,31 @@
 import React, { Component } from 'react';
 class MovieData extends Component {
+    constructor(props) {
+        super(props);
+        this.props = props;
+        console.log(this.props.match.params.name)
+        this.state = {
+            films: [],
+        }
+    }
+    getMovieData(){
+        React.axios.get('http://localhost:1234/getMovieData',{params:{
+                filmId:this.props.match.params.name
+            }
+        })
+            .then((response) => {
+                console.log(response.data.result);
+                this.setState({
+                        films:response.data.result.activity,     
+                })
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+    componentDidMount(){
+        this.getMovieData();
+    }
   render() {
     return (
 <div className="MovieData">

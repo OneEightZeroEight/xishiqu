@@ -55,6 +55,16 @@ app.get("/getCityList",(req,res)=>{
 	});
 })
 
+//获取电影详情页数据
+//http://m.xishiqu.com/api/film/getFilmDetails?filmId=547
+app.get("/getMovieData", (req, res) => {
+
+	res.append("Access-Control-Allow-Origin", "*");
+
+	request(`http://m.xishiqu.com/ajax/activity/detail?pinyinName=${req.query.filmId}`, (err, result, body) => {
+		res.send(body);
+	});
+})
 
 //获取搜索页面数据
 //http://m.xishiqu.com/ajax/activity/search

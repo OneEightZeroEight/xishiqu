@@ -11,7 +11,6 @@ import { Route } from "react-router-dom";
 import Show from './Show.jsx'
 import List from './List.jsx'
 import Concert from './Concert.jsx'
-import MovieData from './MovieData.jsx'
 
 class Home extends Component {
   

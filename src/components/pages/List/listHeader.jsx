@@ -96,21 +96,9 @@ class listHeader extends Component {
                     <div className="sorts" onClick={this.props.toggleBox.bind(this)}>
                         <i className="btn btn-sort">
                         </i>
-                        <div className="sorts__modal modal" style={{display: "none"}}>
-                            <div className="modal__dialog">
-                                <div className="item active">
-                                    默认
-                                </div>
-                                <div className="item">
-                                    按价格
-                                </div>
-                                <div className="item">
-                                    按日期
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
-                    <i className="btn-date">
+                    <i className="btn-date" onClick={this.props.toggleCalendar.bind(this)}>
                     </i>
                 </div>
 
@@ -129,6 +117,12 @@ export default connect((state)=>{
       dispatch({
         type:"toggleBox",
         isShowBox:!this.props.isShowBox,
+      })
+    },
+    toggleCalendar(){
+      dispatch({
+        type:"toggleCalendar",
+        isCalendar:!this.props.isCalendar,
       })
     }
   }

@@ -66,6 +66,8 @@ if(golbalCode === ''){
 // state交换数据的仓库
 // action交换数据的动作
 const store = createStore((state = {
+	isShowOrder:'',
+	isCalendar:false,
 	isShowBox:false,
     cityCode:golbalCode,
     isShowNav: false,
@@ -91,6 +93,16 @@ const store = createStore((state = {
                 ...state,
                 isShowBox:action.isShowBox
             }
+        case 'toggleCalendar':
+	        return {
+	            ...state,
+	            isCalendar:action.isCalendar
+	        }
+	    case 'toggleOrder':
+	        return {
+	            ...state,
+	            isShowOrder:action.isShowOrder
+	        }
         default:
             return state
     }
