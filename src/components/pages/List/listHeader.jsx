@@ -101,10 +101,11 @@ class listHeader extends Component {
                     <i className="btn-date" onClick={this.props.toggleCalendar.bind(this)}>
                     </i>
                 </div>
+            </div>
+
 
     </div>
     
-</div>
 );
   }
 }

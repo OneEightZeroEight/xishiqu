@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
+
 import { connect } from 'react-redux';
 
-class Xcategory extends Component {
+class Hcategory extends Component {
 	constructor(props){
 		super(props);
 		this.props = props;
 		this.state = {
 			nav: 0,
 			CtList:[
-				{
-					text:'全部',
-					iconClass:'cate-icon all',
-					frontCate:''
-				},
 				{
 					text:'演唱会',
 					iconClass:'cate-icon yanchanghui',
@@ -62,28 +58,6 @@ class Xcategory extends Component {
 		}
 	}
 
-	
-	componentDidMount(){
-		console.log(this.props);
-		this.setState({
-			nav:this.props.categoryIdx
-		},()=>{
-			this.props.sendFc(this.state.CtList[this.state.nav].frontCate);
-		})
-	}
-
-	// componentWillReceiveProps(nextProps){
-	// 	console.log(nextProps);
-	// 	// this.setState({listType: nextProps.frontCate});
-	// }
-
-	chooseNav(index,e){
-		this.setState({
-			nav:index
-		});
-		// console.log(this.state.CtList[index].frontCate);
-		this.props.sendFc(this.state.CtList[index].frontCate);
-	}
 
 	render() {
     	return (
@@ -94,9 +68,8 @@ class Xcategory extends Component {
 		      				return this.state.CtList.map((item,index)=>{
 		      					return (
 
-						      		<div key={index} 
-						      			 className={index === this.state.nav ? "item active" : "item"}
-						      			 onClick={this.chooseNav.bind(this,index)}
+						      		<div key={index} className="item"
+						      			 onClick={this.props.chooseNav.bind(this,index)}
 						      			 >
 						      			 <span className={item.iconClass}></span>
 						                    {item.text}
@@ -112,12 +85,19 @@ class Xcategory extends Component {
     }
 }
 
-
 export default connect((state)=>{
 	console.log(state);
     return state
 },(dispatch=>{
     return {
-    
-  	}
-}))(Xcategory);
+    chooseNav(index,e){
+		dispatch({
+	        type:"setCategoryIdx",
+	        categoryIdx:index+1,
+	    })
+		this.props.history.push({pathname:'/list'});
+	    
+	}
+  }
+}))(Hcategory);
+

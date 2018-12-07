@@ -138,7 +138,7 @@ class Search extends Component {
 				    		{
 				    			(()=>{
 				    				if(!this.state.ifShow){
-				    					return (<ShowList text={this.state.inputText}  newText={this.state.sendText} />)
+				    					return (<ShowList history={this.props.history} text={this.state.inputText}  newText={this.state.sendText} />)
 				    				}
 				    			})()
 				    		}
