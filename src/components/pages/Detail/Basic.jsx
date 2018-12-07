@@ -62,11 +62,10 @@ class Basic extends Component {
 
         this.setState({
             gao: index,
-            showName:this.state.showPlace[index].pinyinName
+            showName:this.state.showPlace[index].pinyinName},()=>{
+                this.qingqiu(this.state.showName)
         })
-        // this.state.showName=""
-        // this.state.showName=this.state.showPlace[index].pinyinName
-        this.qingqiu(this.state.showName)
+        
     }
 
     getmore(){
