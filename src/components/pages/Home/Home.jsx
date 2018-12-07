@@ -9,7 +9,7 @@ import Hcotegory from './Hcategory.jsx';
 import Recommends from './Recommends.jsx'
 import { Route } from "react-router-dom";
 import Show from './Show.jsx'
-import List from './List.jsx'
+import Hlist from './Hlist.jsx'
 import Concert from './Concert.jsx'
 // import MovieData from './MovieData.jsx'
 
@@ -36,14 +36,14 @@ class Home extends Component {
 						<Hcotegory history={this.props.history} />
 			            <Recommends></Recommends>
 			            <Show history={this.props.history}></Show>
-			            <Route path="/home/one/" component={List} />
-			            <Route path="/home/two/" component={List} />
-			            <Route path="/home/three/" component={List} />
-			            <Route path="/home/four/" component={List} />
-			            <Route path="/home/five/" component={List} />
-			            <Route path="/home/six/" component={List} />
-			            <Route path="/home/seven/" component={List} />
-			            <Route path="/home/init/" component={List} />
+			            <Route path="/home/one/" component={Hlist} />
+			            <Route path="/home/two/" component={Hlist} />
+			            <Route path="/home/three/" component={Hlist} />
+			            <Route path="/home/four/" component={Hlist} />
+			            <Route path="/home/five/" component={Hlist} />
+			            <Route path="/home/six/" component={Hlist} />
+			            <Route path="/home/seven/" component={Hlist} />
+			            <Route path="/home/init/" component={Hlist} />
 			            <Concert></Concert>
 			      		<Huaju></Huaju>
 					

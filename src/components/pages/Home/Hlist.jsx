@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-class List extends Component {
+class Hlist extends Component {
 	constructor(props){
 		super(props);
 		this.props=props;
@@ -83,4 +83,4 @@ class List extends Component {
   }
 }
 
-export default List;
+export default Hlist;
