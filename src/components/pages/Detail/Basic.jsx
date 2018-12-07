@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Wgallery from './Wgallery.jsx'
+import Dfooter from './Dfooter.jsx'
 import "animate.css";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import "../../../styles/gallery.scss"
@@ -58,10 +59,12 @@ class Basic extends Component {
     gaoliang(index,e){
         // console.log(this)
         // console.log(index)
+
         this.setState({
-            gao: index
+            gao: index,
+            showName:this.state.showPlace[index].pinyinName},()=>{
+                this.qingqiu(this.state.showName)
         })
-        
         
     }
 
@@ -473,6 +476,8 @@ class Basic extends Component {
         </div>
     </div>
 </div>
+{/*底部*/}
+<Dfooter></Dfooter>
 </div>
         );
     }

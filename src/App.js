@@ -8,6 +8,7 @@ import Search from './components/pages/Search/Search.jsx';
 import Detail from './components/pages/Detail/Detail.jsx';
 import My from './components/pages/My/My.jsx';
 import Text from './components/pages/List/text.jsx';
+import MovieDetail from './components/pages/Detail/MovieDetail.jsx';
 
 class App extends Component {
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
           <Route path="/my" component={My} />
           <Route path="/text" component={Text} />
           <Route path="/detail/:name" component={Detail} />
+          <Route path="/moviedetail/:name" component={MovieDetail} />
     	    <Redirect exact from='/' to='/home/one/' />
         </Switch>
       </div>

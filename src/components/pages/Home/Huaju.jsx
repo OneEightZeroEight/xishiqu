@@ -288,7 +288,7 @@ class Huaju extends Component {
 				return this.state.film.map((item, index) => {
 					return (						
             <Link className="node node--film vertical"  key={index}
-            to={ '/detail/' + item.pinyinName }>
+            to={ '/moviedetail/' + item.filmId }>
                 <div 
                 className="thumbnail" 
                 style={{"backgroundImage": `url(${item.filmImg})`,width: '10rem'}}>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from "jquery";
+import { connect } from 'react-redux';
 import Swiper from 'swiper'
 class Show extends Component {
 	constructor(props){
@@ -8,8 +9,8 @@ class Show extends Component {
 		this.state={
 			day:[],
 			list:[],
-			href:['/home/one/','/home/two/','/home/three/','/home/four/','/home/five/','/home/six/','/home/seven/']
-			
+			href:['/home/one/','/home/two/','/home/three/','/home/four/','/home/five/','/home/six/','/home/seven/'],
+			kw:'超叼的'
 		}
 	}
 	//获取cookie
@@ -50,8 +51,12 @@ class Show extends Component {
 			},()=>{
 
     			// console.log('kkk')
+    			console.log(this.props)
+				let data =this.state.list[0];
+				this.props.setListData(data);
+			// console.log(this.props.initListData)
 				
-					this.props.history.push({pathname:'/home/init/',state:{name:this.state.list[0]}});
+				/*this.props.history.push({pathname:'/home/init/',state:{name:this.state.list[0]}});*/
 
 				
 			})
@@ -63,6 +68,8 @@ class Show extends Component {
 		})
 	}
 	componentDidMount(){
+
+
 		var code =this.getCookie('cityCode');
 		this.getData(code);
 	}
@@ -72,7 +79,6 @@ class Show extends Component {
 			$(item).removeClass('active')
 			})
 			$(e.target).addClass('active');
-			
 			this.props.history.push({pathname:this.state.href[idx],state:{name:this.state.list[idx]}})
 		}
 		
@@ -104,4 +110,16 @@ class Show extends Component {
   }
 }
 
-export default Show;
+export default connect((state)=>{
+    return state
+},(dispatch=>{
+    return {
+    setListData(data){
+      dispatch({
+        type:"setListData",
+        initListData:data,
+      })
+    },
+
+  }
+}))(Show);

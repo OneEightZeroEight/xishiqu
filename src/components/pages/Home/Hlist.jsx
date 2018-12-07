@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
-class List extends Component {
+import { connect } from 'react-redux';
+
+class Hlist extends Component {
 	constructor(props){
 		super(props);
 		this.props=props;
@@ -11,7 +13,7 @@ class List extends Component {
 	}
 	
 	componentDidMount(){
-         
+         console.log('cccccc',this.props.initListData)
         if(this.props.location.state){
         //     console.log(this.props.location.state.name)
             this.setState({
@@ -19,9 +21,15 @@ class List extends Component {
                 })
         }
 
-        
-        
 	}
+    componentWillReceiveProps(np){
+        console.log(np.initListData)
+         this.setState({
+                    showList:np.initListData
+                })
+    }
+    
+  
     
   render() {
     return (
@@ -74,7 +82,7 @@ class List extends Component {
                 		})
                 	})()
                 }
-               
+
             </div>
         </div>
     </div>
@@ -83,4 +91,20 @@ class List extends Component {
   }
 }
 
-export default List;
+
+
+export default connect((state)=>{
+    return state
+},(dispatch=>{
+    return {
+    setListData(){
+      dispatch({
+        type:"setListData",
+        initListData:'',
+      })
+    },
+
+  }
+}))(Hlist);
+
+

@@ -64,9 +64,10 @@ class NodeList extends Component{
 	}
 
 	componentWillReceiveProps(nextProps){
+		// console.log(nextProps.isShowOrder);
 		this.setState({listType: nextProps.frontCate});
 		var cityCode = this.getCookie('cityCode');
-		this.getCategoryList(nextProps.frontCate,'','-1','1',cityCode);
+		this.getCategoryList(nextProps.frontCate,'',nextProps.isShowOrder,'1',cityCode);
 	}
 
 	linkToDt(name,e){
@@ -176,6 +177,7 @@ class NodeList extends Component{
 }
 
 export default connect((state)=>{
+	// console.log(state);
     return state
 },(dispatch=>{
     return {

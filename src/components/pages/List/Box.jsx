@@ -74,14 +74,17 @@ export default connect((state)=>{
 			$(item).removeClass('active')
 			})
 			$(e.target).addClass('active');
-			let storage = window.localStorage;
-      		storage.setItem("order", this.state.sortData[idx].order);
+			
 			setTimeout(()=>{
 				dispatch({
 			        type:"toggleBox",
 			        isShowBox:false,
 			      })
 			},300)
+			dispatch({
+			        type:"toggleOrder",
+			        isShowOrder: this.state.sortData[idx].order,
+			      })
       
       
     }

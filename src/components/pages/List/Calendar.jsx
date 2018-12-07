@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-
+import { connect } from 'react-redux';
+import 'animate.css';
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 class Calendar extends Component {
   constructor(props){
     super(props);
@@ -7,9 +9,20 @@ class Calendar extends Component {
   }
   render() {
     return (
-
-    <div className="calendar" style={{display:'none'}}>
-        <div className="calendar-header">
+<div className="calendar">
+    {
+      (()=>{
+        if(this.props.isCalendar){
+          return (
+            <ReactCSSTransitionGroup
+                          transitionEnter={true}
+                          transitionLeave={true}
+                          transitionEnterTimeout={500}
+                          transitionLeaveTimeout={500}
+                          transitionName="animated"
+                        >
+            <div className='animated fadeInDown'>
+            <div className="calendar-header">
             <ul className="controls">
                 <li className="prev">
                     <i className="icon icon-angle-left">
@@ -52,7 +65,7 @@ class Calendar extends Component {
                 </li>
             </ul>
         </div>
-        <div className="calendar-body">
+        <div className="calendar-body" onClick={this.props.toggleCalendar.bind(this)}>
             <div className="days">
                 <div className="group">
                     <div className="i">
@@ -113,7 +126,7 @@ class Calendar extends Component {
                         </span>
                     </div>
                     <div className="i">
-                        <span className="day current selectable">
+                        <span className="day selectable">
                             6
                         </span>
                     </div>
@@ -278,9 +291,30 @@ class Calendar extends Component {
                 </div>
             </div>
         </div>
-    </div>
+        </div>
+        </ReactCSSTransitionGroup>
+            )
+
+        }
+      })()
+    }
+</div>
 );
   }
 }
 
-export default Calendar;
+export default connect((state)=>{
+    return state
+},(dispatch=>{
+    return {
+      toggleCalendar(){
+      dispatch({
+        type:"toggleCalendar",
+        isCalendar:false,
+      })
+    }
+      
+      
+    }
+  }
+))(Calendar);
