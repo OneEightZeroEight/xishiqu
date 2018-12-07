@@ -10,9 +10,28 @@ class Recommends extends Component {
 
 		}
 	}
-	getData(){
+
+
+    //获取cookie
+    getCookie(cname){
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        // console.log("获取cookie,现在循环");
+        for (var i = 0; i < ca.length; i++){
+            var c = ca[i];
+            // console.log(c);
+            while (c.charAt(0) === ' ') c = c.substring(1);
+            if (c.indexOf(name) !== -1){
+                // console.log(c.substring(name.length, c.length));
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+	getData(cityCode){
 		React.axios.get('http://localhost:1234/getIndexData',{params:{
-            cityCode:'020'
+            cityCode: cityCode
         }
     })
 		.then( (res)=> {
@@ -35,7 +54,8 @@ class Recommends extends Component {
 	  });
 	}
 	componentWillMount(){
-		this.getData();
+        var code = this.getCookie('cityCode');
+		this.getData(code);
 	}
   render() {
     return (
