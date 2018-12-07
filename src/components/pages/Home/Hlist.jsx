@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
+
 class Hlist extends Component {
 	constructor(props){
 		super(props);
@@ -19,6 +20,7 @@ class Hlist extends Component {
                     showList:this.props.location.state.name
                 })
         }
+
 	}
     componentWillReceiveProps(np){
         console.log(np.initListData)
@@ -27,9 +29,11 @@ class Hlist extends Component {
                 })
     }
     
+  
+    
   render() {
     return (
-<div className="Hlist">
+<div className="List">
     <div className="block-wrapper">
         
         <div className="node-list">
@@ -88,6 +92,7 @@ class Hlist extends Component {
 }
 
 
+
 export default connect((state)=>{
     return state
 },(dispatch=>{
@@ -101,4 +106,5 @@ export default connect((state)=>{
 
   }
 }))(Hlist);
+
 

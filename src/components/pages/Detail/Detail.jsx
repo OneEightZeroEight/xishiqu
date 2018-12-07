@@ -11,7 +11,7 @@ class Detail extends Component {
         return (
             <div id="wrapper-activity">
                 <div className="page-group">
-                        <Basic history={this.props.match.params.name}></Basic>
+                        <Basic history={this.props.match.params.name} backto={this.props}></Basic>
                     
                 </div>
             </div>

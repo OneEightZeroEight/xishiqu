@@ -8,9 +8,9 @@ import Xfooter from '../../common/Xfooter.jsx';
 import Hcotegory from './Hcategory.jsx';
 import Recommends from './Recommends.jsx';
 import { Route } from "react-router-dom";
-import Show from './Show.jsx';
-import Hlist from './Hlist.jsx';
-import Concert from './Concert.jsx';
+import Show from './Show.jsx'
+import Hlist from './Hlist.jsx'
+import Concert from './Concert.jsx'
 
 // import MovieData from './MovieData.jsx'
 
@@ -63,7 +63,7 @@ class Home extends Component {
 			            <Route initListData={this.state.initListData} path="/home/five/" component={Hlist} />
 			            <Route initListData={this.state.initListData} path="/home/six/" component={Hlist} />
 			            <Route initListData={this.state.initListData} path="/home/seven/" component={Hlist} />
-			            <Route initListData={this.state.initListData} path="/home/init/" component={Hlist} />
+			            <Route initListData={this.state.initListData} path="/home/init/" component={Hlist} />			 
 			            <Concert></Concert>
 			      		<Huaju></Huaju>
 					
