@@ -18,7 +18,7 @@ class List extends Component {
   }
 
   getFrontCate(fc){
-    console.log('fc:',fc);
+    // console.log('fc:',fc);
     // console.log(this);
     this.setState({
       frontCate: fc

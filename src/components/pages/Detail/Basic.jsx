@@ -61,9 +61,8 @@ class Basic extends Component {
         this.setState({
             gao: index
         })
-        this.state.showName=""
-        this.state.showName=this.state.showPlace[index].pinyinName
-        this.qingqiu(this.state.showName)
+        
+        
     }
 
     getmore(){
@@ -213,7 +212,7 @@ class Basic extends Component {
                 </div>
                  {
             (()=>{
-                if(Number(this.state.wprice )!= 0){
+                if(Number(this.state.wprice )!== 0){
                     return ( 
                             <div className="price">
                         {this.state.films.minPrice}
@@ -379,7 +378,7 @@ class Basic extends Component {
                     (()=>{
                        return this.state.showPlace.map((item,index)=>{
                             return (
-                                <div className={this.state.showName==this.state.showPlace[index].pinyinName?"item swiper-slide active":(index===this.state.gao?"item swiper-slide active":"item swiper-slide")} key={index} onClick={this.gaoliang.bind(this,index)}>
+                                <div className={this.state.showName===this.state.showPlace[index].pinyinName?"item swiper-slide active":(index===this.state.gao?"item swiper-slide active":"item swiper-slide")} key={index} onClick={this.gaoliang.bind(this,index)}>
                                     {item.areaName}
                                 </div>
                             )

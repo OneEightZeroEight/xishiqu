@@ -1,4 +1,10 @@
 import React,{ Component } from 'react';
+import { connect } from 'react-redux';
+
+// import { PullToRefresh, ListView, Button } from 'antd-mobile';
+
+
+
 
 class NodeList extends Component{
 	constructor(props){
@@ -27,7 +33,7 @@ class NodeList extends Component{
 	        		hasMore: res.data.result.hasMore,
 	        		listData: res.data.result.list
 	        	})
-	        	console.log(this.state.listData);
+	        	// console.log(this.state.listData);
 	      })
 	      .catch((err)=>{
 	        
@@ -66,6 +72,10 @@ class NodeList extends Component{
 	linkToDt(name,e){
 		// console.log(name);
 		this.props.history.push({pathname: '/detail/'+name})
+	}
+
+	linkToFilm(id){
+		this.props.history.push({pathname: '/moviedetail/'+id})
 	}
 
 	render(){
@@ -129,7 +139,7 @@ class NodeList extends Component{
 
 
     								return (
-    									<div key={index} className="node node--film horizontal">
+    									<div key={index} onClick={this.linkToFilm.bind(this,item.filmId)} className="node node--film horizontal">
 										    <div className="thumbnail" 
 										    	 style={{backgroundImage: `url(${item.filmImg})`}}>
 									        </div>
@@ -165,4 +175,25 @@ class NodeList extends Component{
 	}
 }
 
-export default NodeList;
+export default connect((state)=>{
+    return state
+},(dispatch=>{
+    return {
+   //  toggleBox(idx,e){
+   //  	$(e.target).parent().children().map((idx,item)=>{
+			// $(item).removeClass('active')
+			// })
+			// $(e.target).addClass('active');
+			// let storage = window.localStorage;
+   //    		storage.setItem("order", this.state.sortData[idx].order);
+			// setTimeout(()=>{
+			// 	dispatch({
+			//         type:"toggleBox",
+			//         isShowBox:false,
+			//       })
+			// },300)
+      
+      
+    // }
+  }
+}))(NodeList);

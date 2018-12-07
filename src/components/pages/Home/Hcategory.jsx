@@ -86,7 +86,7 @@ class Hcategory extends Component {
 }
 
 export default connect((state)=>{
-	console.log(state);
+	// console.log(state);
     return state
 },(dispatch=>{
     return {

@@ -80,7 +80,7 @@ class Lunbo extends Component {
 		      	(()=>{
 		      		let bannerHTML=this.state.bannerdata.map((item,idx)=>{
 						return <div key={idx} className="swiper-slide">
-							<img src={item.imgUrl} />
+							<img src={item.imgUrl} alt="imgurl" />
 						</div>
 					})
 					return bannerHTML

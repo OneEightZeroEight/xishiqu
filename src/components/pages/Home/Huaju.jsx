@@ -42,7 +42,7 @@ class Huaju extends Component {
 				console.log(response.data.result);
 				let srt = response.data.result.activityCateInfo[1].mData
 				let obj = srt.shift();
-				console.log(obj)
+				// console.log(obj)
 				// console.log(srt)
 				let haha = response.data.result.activityCateInfo[2].mData
 				let obj2 = haha.shift();

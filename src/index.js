@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 
 import { HashRouter as Router } from 'react-router-dom';
 
+// import 'antd-mobile/dist/antd-mobile.css';
 import './styles/app.css';
 import './styles/home.css';
 import './styles/activity.scss';

@@ -43,13 +43,13 @@ class Show extends Component {
 				titleArr.push(totalday[i].title);
 				listArr.push(totalday[i].list)
 			}
-			console.log(titleArr)
+			// console.log(titleArr)
 			this.setState({
 				day:titleArr,
 				list:listArr
 			},()=>{
 
-    			console.log('kkk')
+    			// console.log('kkk')
 				
 					this.props.history.push({pathname:'/home/init/',state:{name:this.state.list[0]}});
 
