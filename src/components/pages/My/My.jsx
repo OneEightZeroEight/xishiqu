@@ -7,6 +7,7 @@ import '../../../styles/my.css';
 
 import Login from './Login/Login.jsx';
 import User from './User/User.jsx';
+import Waiting from '../../common/Waiting.jsx';
 
 class My extends Component {
     constructor(props){
@@ -62,7 +63,7 @@ class My extends Component {
                                             <div></div><div></div><div></div>
                                             <div></div><div></div><div></div>
                                         </div>
-                                        <p>正在努力加载中</p>
+                                        <p>欧飞悦正在努力帮您加载</p>
                                     </div>
                                 </div>
                             )
@@ -71,6 +72,7 @@ class My extends Component {
                 }
                 <Route path="/my/login" component={Login} />
                 <Route path="/my/user" component={User} />
+                <Route path="/my/waiting" component={Waiting} />
             </div>
         );
     }

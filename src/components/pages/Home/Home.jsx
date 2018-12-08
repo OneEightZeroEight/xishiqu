@@ -21,7 +21,7 @@ class Home extends Component {
 	constructor(props){
         super(props);
         this.props = props;
-        console.log(this.props)
+        // console.log(this.props)
         this.state={
         	nav: 0,
         	initListData: ''
@@ -55,15 +55,6 @@ class Home extends Component {
 					<div className="block-wrapper">
 						<Hcotegory history={this.props.history} />
 			            <Recommends></Recommends>
-			            <Show history={this.props.history}></Show>
-			            <Route path="/home/one/" component={Hlist} />
-			            <Route path="/home/two/" component={Hlist} />
-			            <Route path="/home/three/" component={Hlist} />
-			            <Route path="/home/four/" component={Hlist} />
-			            <Route path="/home/five/" component={Hlist} />
-			            <Route path="/home/six/" component={Hlist} />
-			            <Route path="/home/seven/" component={Hlist} />
-			            <Route path="/home/init/" component={Hlist} />
 			            <Show history={this.props.history} ></Show>
 			            <Route initListData={this.state.initListData} path="/home/one/" component={Hlist} />
 			            <Route initListData={this.state.initListData} path="/home/two/" component={Hlist} />
@@ -89,7 +80,7 @@ class Home extends Component {
 }
 
 export default connect((state)=>{
-	console.log(state)
+	// console.log(state)
     return state
 },(dispatch=>{
     return {

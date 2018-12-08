@@ -1,0 +1,136 @@
+.pre-loader {
+	position:fixed;
+	height: 170px;
+	width: 170px;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	margin: auto auto;
+	cursor:pointer;
+	z-index:10000;
+	opacity: 0.8;
+	background-color:#ccc
+}
+.pre-loader .inner {
+	position:absolute;
+	top:50%;
+	left:50%;
+	-webkit-transform:translateX(-50%) translateY(-50%);
+	transform:translateX(-50%) translateY(-50%)
+}
+.pre-loader .inner p{
+	text-align: center;
+	width: 170px;
+}
+.pre-loader .la-ball-grid-pulse,.pre-loader .la-ball-grid-pulse>div {
+	position:relative;
+	box-sizing:border-box
+}
+.pre-loader .la-ball-grid-pulse {
+	display:block;
+	font-size:0;
+	color:#fff;
+	width:36px;
+	height:36px
+}
+.pre-loader .la-ball-grid-pulse.la-dark {
+	color:#333
+}
+.pre-loader .la-ball-grid-pulse>div {
+	display:inline-block;
+	float:none;
+	background-color:currentColor;
+	border:0 solid currentColor;
+	width:8px;
+	height:8px;
+	margin:2px;
+	border-radius:100%;
+	-webkit-animation-name:ball-grid-pulse;
+	animation-name:ball-grid-pulse;
+	-webkit-animation-iteration-count:infinite;
+	animation-iteration-count:infinite
+}
+.pre-loader .la-ball-grid-pulse>div:nth-child(1) {
+	-webkit-animation-duration:.65s;
+	animation-duration:.65s;
+	-webkit-animation-delay:.03s;
+	animation-delay:.03s
+}
+.pre-loader .la-ball-grid-pulse>div:nth-child(2) {
+	-webkit-animation-duration:1.02s;
+	animation-duration:1.02s;
+	-webkit-animation-delay:.09s;
+	animation-delay:.09s
+}
+.pre-loader .la-ball-grid-pulse>div:nth-child(3) {
+	-webkit-animation-duration:1.06s;
+	animation-duration:1.06s;
+	-webkit-animation-delay:-.69s;
+	animation-delay:-.69s
+}
+.pre-loader .la-ball-grid-pulse>div:nth-child(4) {
+	-webkit-animation-duration:1.5s;
+	animation-duration:1.5s;
+	-webkit-animation-delay:-.41s;
+	animation-delay:-.41s
+}
+.pre-loader .la-ball-grid-pulse>div:nth-child(5) {
+	-webkit-animation-duration:1.6s;
+	animation-duration:1.6s;
+	-webkit-animation-delay:.04s;
+	animation-delay:.04s
+}
+.pre-loader .la-ball-grid-pulse>div:nth-child(6) {
+	-webkit-animation-duration:.84s;
+	animation-duration:.84s;
+	-webkit-animation-delay:.07s;
+	animation-delay:.07s
+}
+.pre-loader .la-ball-grid-pulse>div:nth-child(7) {
+	-webkit-animation-duration:.68s;
+	animation-duration:.68s;
+	-webkit-animation-delay:-.66s;
+	animation-delay:-.66s
+}
+.pre-loader .la-ball-grid-pulse>div:nth-child(8) {
+	-webkit-animation-duration:.93s;
+	animation-duration:.93s;
+	-webkit-animation-delay:-.76s;
+	animation-delay:-.76s
+}
+.pre-loader .la-ball-grid-pulse>div:nth-child(9) {
+	-webkit-animation-duration:1.24s;
+	animation-duration:1.24s;
+	-webkit-animation-delay:-.76s;
+	animation-delay:-.76s
+}
+.la-ball-grid-pulse.la-sm {
+	width:18px;
+	height:18px
+}
+.la-ball-grid-pulse.la-sm>div {
+	width:4px;
+	height:4px;
+	margin:1px
+}
+.la-ball-grid-pulse.la-2x {
+	margin:20px auto;
+	width:72px;
+	height:72px
+}
+.la-ball-grid-pulse.la-2x>div {
+	background:#32d6ff;
+	width:16px;
+	height:16px;
+	margin:4px
+}
+.la-ball-grid-pulse.la-3x {
+	width:108px;
+	height:108px
+}
+.la-ball-grid-pulse.la-3x>div {
+	width:24px;
+	height:24px;
+	margin:6px
+}

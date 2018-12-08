@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // import { PullToRefresh, ListView, Button } from 'antd-mobile';
 
-
+import Loading from '../../common/Loading.jsx';
 
 
 class NodeList extends Component{
@@ -13,11 +13,13 @@ class NodeList extends Component{
 		this.state = {
 			listData: [],
 			hasMore: false,
-			listType: '' 
+			listType: '' ,
+			loading: false
 		}
 	}
 
 	getCategoryList(frontCate,date,order,page,cityCode){
+		this.setState({loading:true});
 		React.axios.get(`http://localhost:1234/getCategoryList`, {
 		    params: {
 		      frontCate: frontCate,
@@ -31,7 +33,8 @@ class NodeList extends Component{
 	      		// console.log(res.data.result);
 	        	this.setState({
 	        		hasMore: res.data.result.hasMore,
-	        		listData: res.data.result.list
+	        		listData: res.data.result.list,
+	        		loading: false
 	        	})
 	        	// console.log(this.state.listData);
 	      })
@@ -82,6 +85,7 @@ class NodeList extends Component{
 	render(){
 		return (
 			<div className="node-list">
+				<div style={{display:this.state.loading?'block':'none'}}><Loading /></div>
     			{
     				(()=>{
     					if(this.state.listData.length === 0){

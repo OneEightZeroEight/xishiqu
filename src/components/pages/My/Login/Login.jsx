@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-import ListHeader from '../../List/listHeader.jsx';
 import '../../../../styles/login.scss';
 
 class Login extends Component {
@@ -52,7 +51,7 @@ class Login extends Component {
     startLogin(e){
         console.log(this.state.email,this.state.checkCode);
         this.setCookie('userEmail',this.state.email,1);
-        this.props.history.push({pathname:'/'});
+        this.props.history.push({pathname:'/my/waiting',query:{text:'登录成功'}});
     }
 
 
@@ -104,8 +103,8 @@ class Login extends Component {
                                                 </button>
                                             </div>
                                             <button disabled="disabled" className="btn btn-default login-btn">登录</button>
-                                            <a href="#" className="forgot-pwd">找回密码</a>
-                                            <a href="#" className="register">新用户注册</a>
+                                            <a href="http://localhost:3000/" className="forgot-pwd">找回密码</a>
+                                            <a href="http://localhost:3000/" className="register">新用户注册</a>
                                         </div>
                                     )
                                 }

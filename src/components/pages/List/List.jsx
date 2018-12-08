@@ -3,9 +3,8 @@ import ListHeader from './listHeader.jsx';
 import Xcategory from '../../common/Xcategory.jsx';
 import NodeList from './NodeList.jsx';
 import Xfooter from '../../common/Xfooter.jsx';
-import Box from './Box.jsx'
-import Calendar from './Calendar.jsx'
-
+import Box from './Box.jsx';
+import Calendar from './Calendar.jsx';
 
 class List extends Component {
   constructor(props){

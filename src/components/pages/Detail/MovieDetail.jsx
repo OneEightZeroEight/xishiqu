@@ -34,7 +34,7 @@ class MovieData extends Component {
 <div className='page__info'>
     <div className="info__basic">
         <div className="basic__big">
-            <img className="big__img" src="http://image6.xishiqu.cn/upload/film/920/181/920181204//3A193760-67FD-FD45-C246-1DE044615718.jpg" />
+            <img className="big__img" alt="bigImg" src="http://image6.xishiqu.cn/upload/film/920/181/920181204//3A193760-67FD-FD45-C246-1DE044615718.jpg" />
                 <i className="icon icon-angle-left">
                 </i>
             
@@ -70,7 +70,7 @@ class MovieData extends Component {
                 </h3>
                 <ul className="audience__list clearfix">
                     <li className="list__item">
-                        <img className="item__img" src="http://image3.xishiqu.cn/upload/userUpload/920/171/920171123//m/253D81EC-B8E2-DFAE-F6CE-1B60941A6153.jpg" />
+                        <img className="item__img"  src="http://image3.xishiqu.cn/upload/userUpload/920/171/920171123//m/253D81EC-B8E2-DFAE-F6CE-1B60941A6153.jpg" />
                     </li>
                     <li className="list__item">
                         <img className="item__img" src="http://image.xishiqu.com/upload/app/memHeader/default.png" />

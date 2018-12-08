@@ -133,7 +133,7 @@ class Search extends Component {
 				    </div> 
 				    <div className="page__content">
 				    	
-				    		<HotShow  ifShow={this.state.ifShow} handleSelect={this.handleSelect} />
+				    		<HotShow  ifShow={this.state.ifShow} handleSelect={this.handleSelect.bind(this)} />
 
 				    		{
 				    			(()=>{

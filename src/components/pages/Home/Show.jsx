@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import $ from "jquery";
 import { connect } from 'react-redux';
-import Swiper from 'swiper'
+import Swiper from 'swiper';
+import Loading from '../../common/Loading.jsx';
 class Show extends Component {
 	constructor(props){
 		super(props);
@@ -10,7 +11,8 @@ class Show extends Component {
 			day:[],
 			list:[],
 			href:['/home/one/','/home/two/','/home/three/','/home/four/','/home/five/','/home/six/','/home/seven/'],
-			kw:'超叼的'
+			kw:'超叼的',
+			loading: true
 		}
 	}
 	//获取cookie
@@ -31,6 +33,7 @@ class Show extends Component {
 	}
 
 	getData(code){
+		this.setState({loading:true});
 		React.axios.get('http://localhost:1234/getIndexData',{params:{
 			cityCode:code
 		}
@@ -47,7 +50,8 @@ class Show extends Component {
 			// console.log(titleArr)
 			this.setState({
 				day:titleArr,
-				list:listArr
+				list:listArr,
+				loading:false
 			},()=>{
 
     			// console.log('kkk')
@@ -86,6 +90,8 @@ class Show extends Component {
   render() {
     return (
 <div className="Show">
+	<div style={{display:this.state.loading?'block':'none'}}><Loading /></div>
+	
     <div className="block-wrapper">
         <h3 className="block__title">
             七日演出
