@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Wgallery from './Wgallery.jsx'
+import Anchorl from './Anchorl.jsx'
 import Dfooter from './Dfooter.jsx'
+
 import "animate.css";
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import "../../../styles/gallery.scss"
@@ -20,9 +22,13 @@ class Basic extends Component {
             ShowShare:false,
             showTu:false,
             more:false,
-            gao:9
+            gao:9,
+            codeType:true, // 声明回调执行开关
+            xiao:true
 
         }
+        this.bindScroll = this.bindScroll.bind(this);
+        console.log(this.bindScroll)
 	}
     navigateTo(e){
         console.log(123)
@@ -50,11 +56,81 @@ class Basic extends Component {
             });
     }
     componentDidMount() {
+        // 挂载页面滚动监听
+        window.addEventListener('scroll', this.bindScroll)
+
        window.scrollTo(0,0);
        this.lunbo()
         this.qingqiu()
+        window.onscroll = (e)=>{
+            console.log(e)
+            // console.log(document.documentElement.scrollTop);
+        }
 
     }
+    componentWillUnmount() {
+        // 移除页面滚动监听
+        window.removeEventListener('scroll', this.bindScroll.bind(this));
+    }
+
+    bindScroll(event) {
+        // 滚动的高度
+        const scrollTop = (event.srcElement ? event.srcElement.documentElement.scrollTop : false) || window.pageYOffset || (event.srcElement ? event.srcElement.body.scrollTop : 0);
+        // 视窗高度
+        const clientHeight = (event.srcElement && event.srcElement.documentElement.clientHeight) || document.body.clientHeight;
+        // 页面高度
+        const scrollHeight = (event.srcElement && event.srcElement.documentElement.scrollHeight) || document.body.scrollHeight;
+        // 距离页面底部的高度
+        const height = scrollHeight - scrollTop - clientHeight;
+        console.log(clientHeight,scrollHeight,scrollTop,height)
+        // 判断距离页面底部的高度
+
+        if(scrollTop>= 400 && height!==0){
+              this.setState(
+                    {
+                        codeType: false
+                    }
+                );
+        }else if(scrollTop< 400 ){
+             this.setState(
+                    {
+                        codeType: true
+                    }
+                );
+        }
+        if(height===0 && scrollTop>= 400 ){
+            this.setState(
+                    {
+                        xiao: false
+                    }
+                );
+        }else{
+            this.setState(
+                    {
+                        xiao: true
+                    }
+                );
+        }
+        // if (height <= (this.props.num || 0)) {
+        //     // 判断执行回调条件
+        //     if (this.state.codeType) {
+        //         // 执行回调
+        //         this.props.scrollCallback();
+        //         // 关闭判断执行开关
+        //         this.setState(
+        //             {
+        //                 codeType: false,
+        //             }
+        //         );
+        //     }
+        // } else {
+        //     // 打开判断执行开关
+        //     this.setState({
+        //         codeType: true
+        //     });
+        // }
+    }
+
 
     gaoliang(index,e){
         // console.log(this)
@@ -367,7 +443,7 @@ class Basic extends Component {
 {/*演唱介绍*/}
 <div className="block-wrapper">
     <div className="block">
-        <h3 className="block__title">
+        <h3 className="block__title" id="yanchu">
             演出介绍
         </h3>
         <div className="block__content intro">
@@ -442,7 +518,7 @@ class Basic extends Component {
         </div>
     </div>
     <div className="block">
-        <h3 className="block__title">
+        <h3 className="block__title" id="goupiao" >
             购票须知
         </h3>
         <div className="block__content remark">
@@ -465,8 +541,10 @@ class Basic extends Component {
         </div>
     </div>
     <div className="block">
-        <h3 className="block__title">
+        <h3 className="block__title" id="hudong">
+
             互动评论(0)
+            
             <div className="btn">
                 写评论
             </div>
@@ -475,7 +553,19 @@ class Basic extends Component {
             
         </div>
     </div>
+
 </div>
+<div className="block-wrapper">
+    <div className="block">
+        <h3 className="block__title" id="xiangguan">
+            相关演出
+        </h3>
+        <div className="block__content">
+        </div>
+    </div>
+</div>
+ <Anchorl history={this.state}></Anchorl>
+
 {/*底部*/}
 <Dfooter></Dfooter>
 </div>

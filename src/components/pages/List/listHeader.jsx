@@ -12,7 +12,7 @@ class listHeader extends Component {
   }
   navigateTo(e){
     console.log(e);
-    // console.log(this.props.history);
+    console.log(this.props.history);
     this.props.history.push({pathname: '/city'});
   }
 

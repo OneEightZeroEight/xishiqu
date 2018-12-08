@@ -14,6 +14,27 @@ var request = require('request');
 
 //定义后端静态服务器
 var app = express();
+const db=require('../../src/mongoose/src/mongo/mongoose.js')
+const email=require('../../src/mongoose/src/mongo/model/sendmail.js')
+console.log(email);
+const path =require('path');
+
+const bodyParser = require("body-parser");
+
+// const mysql=require('./src/mysql/test.js')
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(express.static(path.join(__dirname,'./public')))
+
+
+ app.use('/admin',express.static(path.join(__dirname,'./admin')))
+  //路由
+  const adminRouter=require('../../src/mongoose/src/router/admin.js')
+  // const uploadRouter=require('./src/router/upload2.js')
+  const goodsRouter=require('../../src/mongoose/src/router/goods.js')
+
+  app.use('/admin',adminRouter)
+  // app.use('/upload',uploadRouter)
+   app.use('/goods',goodsRouter)
 //context可以是单个字符串，也可以是多个字符串数组，分别对应你需要代理的api,星号（*）表示匹配当前路径下面的所有api
 
 
