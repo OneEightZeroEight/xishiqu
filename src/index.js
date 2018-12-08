@@ -12,6 +12,8 @@ import './styles/film.css';
 import './styles/city.css';
 import './styles/category.scss'
 import './styles/Calendar.scss'
+import './styles/upload.css'
+import 'antd-mobile/dist/antd-mobile.css';
 
 import App from './App';
 // 路由

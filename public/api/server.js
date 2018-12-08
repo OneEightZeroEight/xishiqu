@@ -61,9 +61,16 @@ app.get("/getMovieData", (req, res) => {
 
 	res.append("Access-Control-Allow-Origin", "*");
 
-	request(`http://m.xishiqu.com/ajax/activity/detail?pinyinName=${req.query.filmId}`, (err, result, body) => {
+		request({
+		url: `http://m.xishiqu.com/api/film/getFilmDetails?filmId=${req.query.filmId}`,
+		headers: {
+			'Cookie': `cityCode=${req.query.cityCode}`
+		}
+
+	}, (err, result, body) => {
 		res.send(body);
 	});
+
 })
 
 //获取搜索页面数据
@@ -176,6 +183,7 @@ app.get("/getCategoryList",(req,res)=>{
 		res.send(body);
 	});	
 })
+
 
 
 
